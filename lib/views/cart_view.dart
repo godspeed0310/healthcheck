@@ -3,6 +3,7 @@ import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:healthcheck/constants/app_extensions.dart';
 import 'package:healthcheck/constants/shared_constants.dart';
+import 'package:healthcheck/models/medical_test.dart';
 import 'package:healthcheck/viewmodels/cart_view_model.dart';
 import 'package:healthcheck/views/schedule_view.dart';
 import 'package:healthcheck/widgets/cart_amount_component.dart';
@@ -10,7 +11,6 @@ import 'package:healthcheck/widgets/cart_order_card.dart';
 import 'package:healthcheck/widgets/cta_button.dart';
 import 'package:healthcheck/widgets/custom_open_container.dart';
 import 'package:healthcheck/widgets/default_system_overlay.dart';
-import 'package:healthcheck/widgets/section_header.dart';
 import 'package:sizer/sizer.dart';
 import 'package:stacked/stacked.dart';
 
@@ -40,17 +40,21 @@ class CartView extends StatelessWidget {
               physics: const BouncingScrollPhysics(),
               padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 2.h),
               children: [
-                const SectionHeader(title: 'Order Review'),
-                Gap(4.h),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: List.generate(
-                    model.tests.length,
-                    (index) => CartOrderCard(
-                      test: model.tests[index],
-                    ),
-                  ),
+                ListView.separated(
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemBuilder: (_, index) {
+                    final MedicalTest test = model.tests[index];
+
+                    return CartOrderCard(
+                      test: test,
+                      onRemove: () => model.removeFromCart(test),
+                    );
+                  },
+                  separatorBuilder: (_, __) {
+                    return Gap(2.h);
+                  },
+                  itemCount: model.tests.length,
+                  shrinkWrap: true,
                 ),
                 Gap(2.h),
                 Container(

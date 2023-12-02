@@ -9,8 +9,9 @@ import 'package:sizer/sizer.dart';
 
 class CartOrderCard extends StatelessWidget {
   final MedicalTest test;
+  final VoidCallback? onRemove;
 
-  const CartOrderCard({super.key, required this.test});
+  const CartOrderCard({super.key, required this.test, this.onRemove});
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +83,7 @@ class CartOrderCard extends StatelessWidget {
                   StadiumBorderButton(
                     label: 'Remove',
                     icon: Icons.delete_outline,
-                    onTap: () {},
+                    onTap: onRemove,
                   ),
                   Gap(1.1.h),
                   StadiumBorderButton(

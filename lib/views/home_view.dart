@@ -32,6 +32,7 @@ class HomeView extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.only(right: 5.w),
                   child: CustomOpenContainer(
+                    onClosed: (_) => model.update(),
                     closedBuilder: (_, __) {
                       return ValueListenableBuilder(
                         valueListenable: model.cartListenable,
@@ -91,7 +92,7 @@ class HomeView extends StatelessWidget {
                   ),
                   itemBuilder: (_, index) {
                     MedicalTest medicalTest = SampleData().labTest[index];
-                    final bool inCart = model.isAddedToCart(medicalTest);
+                    final bool inCart = model.cart.contains(medicalTest);
 
                     return LabTestCard(
                       ctaAction: () => model.addToCart(medicalTest),

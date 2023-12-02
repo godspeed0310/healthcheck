@@ -4,15 +4,12 @@ import 'package:healthcheck/app/app.logger.dart';
 import 'package:healthcheck/constants/app_extensions.dart';
 import 'package:healthcheck/models/medical_test.dart';
 import 'package:healthcheck/services/hive_service.dart';
-import 'package:healthcheck/services/notification_service.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class HomeViewModel extends BaseViewModel {
   final SnackbarService _snackbarService = locator<SnackbarService>();
-  final NotificationService _notificationService =
-      locator<NotificationService>();
   final HiveService _hiveService = locator<HiveService>();
   final log = getLogger('HomeViewModel');
   final ValueListenable cartListenable =
@@ -23,9 +20,13 @@ class HomeViewModel extends BaseViewModel {
     log.i(cart);
   }
 
-  bool isAddedToCart(MedicalTest test) {
-    return cart.contains(test);
+  void update() {
+    notifyListeners();
   }
+
+  bool isAddedToCart(MedicalTest test) => cart.contains(test);
+
+  // bool get isAddedToCart(MedicalTest test) => cart.contains(test);
 
   void addToCart(MedicalTest test) {
     if (isAddedToCart(test)) {
