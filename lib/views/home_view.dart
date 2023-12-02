@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:healthcheck/constants/app_extensions.dart';
+import 'package:healthcheck/data/sample_data.dart';
+import 'package:healthcheck/models/medical_test.dart';
 import 'package:healthcheck/viewmodels/home_view_model.dart';
 import 'package:healthcheck/views/cart_view.dart';
 import 'package:healthcheck/widgets/custom_open_container.dart';
@@ -48,7 +50,7 @@ class HomeView extends StatelessWidget {
                 ),
                 Gap(4.h),
                 GridView.builder(
-                  itemCount: 4,
+                  itemCount: SampleData().labTest.length,
                   padding: EdgeInsets.symmetric(horizontal: 5.w),
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
@@ -59,8 +61,11 @@ class HomeView extends StatelessWidget {
                     childAspectRatio: 0.73,
                   ),
                   itemBuilder: (_, index) {
+                    MedicalTest medicalTest = SampleData().labTest[index];
+
                     return LabTestCard(
-                      ctaAction: () => model.addToCart(),
+                      ctaAction: () => model.addToCart(medicalTest),
+                      medicalTest: medicalTest,
                     );
                   },
                 ),

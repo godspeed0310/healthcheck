@@ -1,22 +1,22 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'lab_test.dart';
+part of 'medical_test.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class LabTestAdapter extends TypeAdapter<LabTest> {
+class MedicalTestAdapter extends TypeAdapter<MedicalTest> {
   @override
   final int typeId = 0;
 
   @override
-  LabTest read(BinaryReader reader) {
+  MedicalTest read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return LabTest(
+    return MedicalTest(
       name: fields[0] as String,
       description: fields[1] as String,
       price: fields[3] as int,
@@ -26,7 +26,7 @@ class LabTestAdapter extends TypeAdapter<LabTest> {
   }
 
   @override
-  void write(BinaryWriter writer, LabTest obj) {
+  void write(BinaryWriter writer, MedicalTest obj) {
     writer
       ..writeByte(5)
       ..writeByte(0)
@@ -47,7 +47,7 @@ class LabTestAdapter extends TypeAdapter<LabTest> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is LabTestAdapter &&
+      other is MedicalTestAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
@@ -56,8 +56,8 @@ class LabTestAdapter extends TypeAdapter<LabTest> {
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$LabTestImpl _$$LabTestImplFromJson(Map<String, dynamic> json) =>
-    _$LabTestImpl(
+_$MedicalTestImpl _$$MedicalTestImplFromJson(Map<String, dynamic> json) =>
+    _$MedicalTestImpl(
       name: json['name'] as String,
       description: json['description'] as String,
       price: json['price'] as int,
@@ -65,7 +65,7 @@ _$LabTestImpl _$$LabTestImplFromJson(Map<String, dynamic> json) =>
       tests: (json['tests'] as List<dynamic>).map((e) => e as String).toList(),
     );
 
-Map<String, dynamic> _$$LabTestImplToJson(_$LabTestImpl instance) =>
+Map<String, dynamic> _$$MedicalTestImplToJson(_$MedicalTestImpl instance) =>
     <String, dynamic>{
       'name': instance.name,
       'description': instance.description,

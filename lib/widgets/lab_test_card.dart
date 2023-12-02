@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:healthcheck/constants/app_extensions.dart';
 import 'package:healthcheck/constants/shared_constants.dart';
+import 'package:healthcheck/models/medical_test.dart';
 import 'package:healthcheck/widgets/cta_button.dart';
 import 'package:sizer/sizer.dart';
 
 class LabTestCard extends StatelessWidget {
   final VoidCallback? ctaAction;
+  final MedicalTest medicalTest;
 
-  const LabTestCard({super.key, this.ctaAction});
+  const LabTestCard({super.key, this.ctaAction, required this.medicalTest});
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +36,7 @@ class LabTestCard extends StatelessWidget {
             ),
             child: Center(
               child: Text(
-                'Thyroid Profile',
+                medicalTest.name,
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 7.5.sp,
@@ -52,7 +54,7 @@ class LabTestCard extends StatelessWidget {
                 children: [
                   Gap(2.1.h),
                   Text(
-                    'Includes 3 tests',
+                    'Includes ${medicalTest.tests.length} tests',
                     style: TextStyle(
                       fontSize: 10.sp,
                     ),
@@ -65,7 +67,7 @@ class LabTestCard extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    '₹1000',
+                    '₹${medicalTest.price}',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: context.primaryColor,
