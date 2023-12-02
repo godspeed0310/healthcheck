@@ -16,6 +16,7 @@ class CTAButton extends StatelessWidget {
   final TextStyle? labelStyle;
   final BorderRadius? borderRadius;
   final bool enabled;
+  final Color? color;
 
   const CTAButton({
     super.key,
@@ -26,6 +27,7 @@ class CTAButton extends StatelessWidget {
     this.labelStyle,
     this.borderRadius,
     this.enabled = true,
+    this.color,
   });
 
   @override
@@ -36,7 +38,8 @@ class CTAButton extends StatelessWidget {
       color: isOutlined ? context.primaryColor : kcWhite,
       fontSize: 6.75.sp,
     );
-    final Color primary = enabled ? context.primaryColor : Colors.grey[500]!;
+    final Color primary =
+        enabled ? color ?? context.primaryColor : Colors.grey[500]!;
 
     return InkWell(
       onTap: enabled ? onPressed : null,

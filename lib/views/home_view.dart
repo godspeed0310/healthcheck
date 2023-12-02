@@ -1,3 +1,4 @@
+import 'package:badges/badges.dart' as bd;
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:healthcheck/constants/app_extensions.dart';
@@ -20,7 +21,7 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<HomeViewModel>.reactive(
       viewModelBuilder: () => HomeViewModel(),
-      onViewModelReady: (model) => model.init(),
+      onViewModelReady: (model) => model.initializeModel(),
       builder: (context, model, _) {
         return DefaultSystemOverlay(
           child: Scaffold(
@@ -28,17 +29,44 @@ class HomeView extends StatelessWidget {
               centerTitle: true,
               title: const Text('Health Check'),
               actions: [
-                CustomOpenContainer(closedBuilder: (_, __) {
-                  return IconButton(
-                    onPressed: null,
-                    icon: Icon(
-                      Icons.shopping_cart,
-                      color: context.primaryColor,
-                    ),
-                  );
-                }, openBuilder: (_, __) {
-                  return const CartView();
-                }),
+                Padding(
+                  padding: EdgeInsets.only(right: 5.w),
+                  child: CustomOpenContainer(
+                    closedBuilder: (_, __) {
+                      return ValueListenableBuilder(
+                        valueListenable: model.cartListenable,
+                        builder: (context, value, _) {
+                          return bd.Badge(
+                            position: bd.BadgePosition.topEnd(
+                              end: 5,
+                              top: 0,
+                            ),
+                            badgeStyle: bd.BadgeStyle(
+                              padding: EdgeInsets.all(1.w),
+                            ),
+                            badgeContent: Text(
+                              value.length.toString(),
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 8.sp,
+                              ),
+                            ),
+                            child: IconButton(
+                              onPressed: null,
+                              icon: Icon(
+                                Icons.shopping_cart,
+                                color: context.primaryColor,
+                              ),
+                            ),
+                          );
+                        },
+                      );
+                    },
+                    openBuilder: (_, __) {
+                      return const CartView();
+                    },
+                  ),
+                ),
               ],
             ),
             body: ListView(
@@ -63,10 +91,12 @@ class HomeView extends StatelessWidget {
                   ),
                   itemBuilder: (_, index) {
                     MedicalTest medicalTest = SampleData().labTest[index];
+                    final bool inCart = model.isAddedToCart(medicalTest);
 
                     return LabTestCard(
                       ctaAction: () => model.addToCart(medicalTest),
                       medicalTest: medicalTest,
+                      inCart: inCart,
                     );
                   },
                 ),

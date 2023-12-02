@@ -9,8 +9,14 @@ import 'package:sizer/sizer.dart';
 class LabTestCard extends StatelessWidget {
   final VoidCallback? ctaAction;
   final MedicalTest medicalTest;
+  final bool inCart;
 
-  const LabTestCard({super.key, this.ctaAction, required this.medicalTest});
+  const LabTestCard({
+    super.key,
+    this.ctaAction,
+    required this.medicalTest,
+    this.inCart = false,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -75,8 +81,9 @@ class LabTestCard extends StatelessWidget {
                   ),
                   const Spacer(),
                   CTAButton(
-                    label: 'Add to Cart',
+                    label: inCart ? 'In cart' : 'Add to Cart',
                     onPressed: ctaAction,
+                    color: inCart ? kcSecondary : kcPrimary,
                   ),
                   Gap(1.h),
                   const CTAButton(

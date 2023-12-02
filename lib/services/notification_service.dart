@@ -1,7 +1,9 @@
 import 'package:awesome_notifications/awesome_notifications.dart';
+import 'package:healthcheck/app/app.logger.dart';
 
 class NotificationService {
   final AwesomeNotifications awesomeNotifications = AwesomeNotifications();
+  final log = getLogger('NotificationService');
 
   void initialize() {
     awesomeNotifications.initialize(
@@ -14,6 +16,7 @@ class NotificationService {
         ),
       ],
     );
+    log.i('Notification Service initialized');
   }
 
   void requestPermissions() {

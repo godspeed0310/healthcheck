@@ -8,12 +8,7 @@ class SampleData {
           'A CBC is a common blood test that checks the different components of your blood, including red blood cells, white blood cells, platelets, and hemoglobin.',
       price: 499,
       discountedPrice: 399,
-      tests: [
-        'Red blood cell count',
-        'White blood cell count',
-        'Platelet count',
-        'Hemoglobin level'
-      ],
+      tests: ['White blood cell count', 'Platelet count', 'Hemoglobin level'],
     ),
     const MedicalTest(
       name: 'Lipid Profile',

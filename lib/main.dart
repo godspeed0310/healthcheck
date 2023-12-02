@@ -3,18 +3,19 @@ import 'package:flutter/services.dart';
 import 'package:healthcheck/app/app.locator.dart';
 import 'package:healthcheck/app/app.router.dart';
 import 'package:healthcheck/constants/shared_constants.dart';
-import 'package:healthcheck/models/medical_test.dart';
-import 'package:hive_flutter/hive_flutter.dart';
+import 'package:healthcheck/services/hive_service.dart';
+import 'package:healthcheck/services/notification_service.dart';
 import 'package:sizer/sizer.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:stacked_themes/stacked_themes.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Hive.initFlutter();
-  Hive.registerAdapter(MedicalTestAdapter());
-  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   await setupLocator();
+  await locator<HiveService>().init();
+  locator<NotificationService>().initialize();
+  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+
   await ThemeManager.initialise();
   runApp(const HealthCheckApp());
 }
