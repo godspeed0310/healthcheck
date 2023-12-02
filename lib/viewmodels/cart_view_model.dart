@@ -15,7 +15,8 @@ class CartViewModel extends BaseViewModel {
   DateTime? _selectedDateTime;
   DateTime? get selectedDateTime => _selectedDateTime;
   final TextEditingController dateController = TextEditingController();
-  bool get isValid => _selectedDateTime != null && conditionsAccepted;
+  bool get isValid =>
+      _selectedDateTime != null && conditionsAccepted && tests.isNotEmpty;
   final HiveService _hiveService = locator<HiveService>();
   final SnackbarService _snackbarService = locator<SnackbarService>();
   bool conditionsAccepted = false;

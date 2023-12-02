@@ -14,9 +14,9 @@ import 'package:flutter/services.dart';
 class $AssetsIllustrationsGen {
   const $AssetsIllustrationsGen();
 
-  /// File path: assets/illustrations/icons8-tick.svg
-  SvgGenImage get icons8Tick =>
-      const SvgGenImage('assets/illustrations/icons8-tick.svg');
+  /// File path: assets/illustrations/empty_cart_illustration.svg
+  SvgGenImage get emptyCartIllustration =>
+      const SvgGenImage('assets/illustrations/empty_cart_illustration.svg');
 
   /// File path: assets/illustrations/transaction_successful_illustration.svg
   SvgGenImage get transactionSuccessfulIllustration => const SvgGenImage(
@@ -24,7 +24,7 @@ class $AssetsIllustrationsGen {
 
   /// List of all assets
   List<SvgGenImage> get values =>
-      [icons8Tick, transactionSuccessfulIllustration];
+      [emptyCartIllustration, transactionSuccessfulIllustration];
 }
 
 class Assets {
