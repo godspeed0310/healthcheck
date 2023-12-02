@@ -40,6 +40,23 @@ class CartViewModel extends BaseViewModel {
     }
   }
 
+  int totalAmount() {
+    int totalAmount = 0;
+    for (var test in tests) {
+      totalAmount += test.price;
+    }
+    return totalAmount;
+  }
+
+  int discountedPrice() {
+    int discountedPrice = 0;
+    for (var test in tests) {
+      int discount = test.price - test.discountedPrice!;
+      discountedPrice += discount;
+    }
+    return discountedPrice;
+  }
+
   void setConditionStatus(bool value) {
     conditionsAccepted = value;
     notifyListeners();

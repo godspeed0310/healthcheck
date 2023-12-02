@@ -41,7 +41,6 @@ class CartView extends StatelessWidget {
                   physics: const NeverScrollableScrollPhysics(),
                   itemBuilder: (_, index) {
                     final MedicalTest test = model.tests[index];
-
                     return CartOrderCard(
                       test: test,
                       onRemove: () => model.removeFromCart(test),
@@ -113,14 +112,17 @@ class CartView extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const CartAmountComponent(
+                      CartAmountComponent(
                         title: 'M.R.P Amount',
-                        amount: 1000,
+                        amount: model.totalAmount(),
                       ),
-                      const CartAmountComponent(title: 'Discount', amount: 400),
+                      CartAmountComponent(
+                        title: 'Discount',
+                        amount: model.discountedPrice(),
+                      ),
                       CartAmountComponent(
                         title: 'Total Amount',
-                        amount: 600,
+                        amount: model.totalAmount() - model.discountedPrice(),
                         titleStyle: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 11.25.sp,
@@ -135,7 +137,7 @@ class CartView extends StatelessWidget {
                       const Spacer(),
                       CartAmountComponent(
                         title: 'Total Savings',
-                        amount: 400,
+                        amount: model.discountedPrice(),
                         amountStyle: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 11.25.sp,
