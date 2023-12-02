@@ -1,3 +1,4 @@
+import 'package:healthcheck/services/notification_service.dart';
 import 'package:healthcheck/views/home_view.dart';
 import 'package:healthcheck/views/transaction_success.dart';
 import 'package:stacked/stacked_annotations.dart';
@@ -13,6 +14,7 @@ import 'package:stacked_services/stacked_services.dart';
     LazySingleton(classType: DialogService),
     LazySingleton(classType: BottomSheetService),
     LazySingleton(classType: SnackbarService),
+    LazySingleton(classType: NotificationService),
   ],
   logger: StackedLogger(),
 )

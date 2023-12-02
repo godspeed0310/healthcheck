@@ -7,10 +7,11 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:flutter/material.dart' as _i4;
 import 'package:flutter/material.dart';
+import 'package:healthcheck/models/appointment.dart' as _i5;
 import 'package:healthcheck/views/home_view.dart' as _i2;
 import 'package:healthcheck/views/transaction_success.dart' as _i3;
 import 'package:stacked/stacked.dart' as _i1;
-import 'package:stacked_services/stacked_services.dart' as _i5;
+import 'package:stacked_services/stacked_services.dart' as _i6;
 
 class Routes {
   static const homeView = '/';
@@ -46,7 +47,7 @@ class StackedRouter extends _i1.RouterBase {
       final args = data.getArgs<TransactionSuccessViewArguments>(nullOk: false);
       return _i4.MaterialPageRoute<dynamic>(
         builder: (context) => _i3.TransactionSuccessView(
-            key: args.key, appointmentDate: args.appointmentDate),
+            key: args.key, appointment: args.appointment),
         settings: data,
       );
     },
@@ -62,31 +63,31 @@ class StackedRouter extends _i1.RouterBase {
 class TransactionSuccessViewArguments {
   const TransactionSuccessViewArguments({
     this.key,
-    required this.appointmentDate,
+    required this.appointment,
   });
 
   final _i4.Key? key;
 
-  final DateTime appointmentDate;
+  final _i5.Appointment appointment;
 
   @override
   String toString() {
-    return '{"key": "$key", "appointmentDate": "$appointmentDate"}';
+    return '{"key": "$key", "appointment": "$appointment"}';
   }
 
   @override
   bool operator ==(covariant TransactionSuccessViewArguments other) {
     if (identical(this, other)) return true;
-    return other.key == key && other.appointmentDate == appointmentDate;
+    return other.key == key && other.appointment == appointment;
   }
 
   @override
   int get hashCode {
-    return key.hashCode ^ appointmentDate.hashCode;
+    return key.hashCode ^ appointment.hashCode;
   }
 }
 
-extension NavigatorStateExtension on _i5.NavigationService {
+extension NavigatorStateExtension on _i6.NavigationService {
   Future<dynamic> navigateToHomeView([
     int? routerId,
     bool preventDuplicates = true,
@@ -103,7 +104,7 @@ extension NavigatorStateExtension on _i5.NavigationService {
 
   Future<dynamic> navigateToTransactionSuccessView({
     _i4.Key? key,
-    required DateTime appointmentDate,
+    required _i5.Appointment appointment,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -111,8 +112,8 @@ extension NavigatorStateExtension on _i5.NavigationService {
         transition,
   }) async {
     return navigateTo<dynamic>(Routes.transactionSuccessView,
-        arguments: TransactionSuccessViewArguments(
-            key: key, appointmentDate: appointmentDate),
+        arguments:
+            TransactionSuccessViewArguments(key: key, appointment: appointment),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -135,7 +136,7 @@ extension NavigatorStateExtension on _i5.NavigationService {
 
   Future<dynamic> replaceWithTransactionSuccessView({
     _i4.Key? key,
-    required DateTime appointmentDate,
+    required _i5.Appointment appointment,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -143,8 +144,8 @@ extension NavigatorStateExtension on _i5.NavigationService {
         transition,
   }) async {
     return replaceWith<dynamic>(Routes.transactionSuccessView,
-        arguments: TransactionSuccessViewArguments(
-            key: key, appointmentDate: appointmentDate),
+        arguments:
+            TransactionSuccessViewArguments(key: key, appointment: appointment),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,

@@ -6,11 +6,11 @@ import 'package:healthcheck/constants/shared_constants.dart';
 import 'package:healthcheck/viewmodels/cart_view_model.dart';
 import 'package:healthcheck/views/schedule_view.dart';
 import 'package:healthcheck/widgets/cart_amount_component.dart';
+import 'package:healthcheck/widgets/cart_order_card.dart';
 import 'package:healthcheck/widgets/cta_button.dart';
 import 'package:healthcheck/widgets/custom_open_container.dart';
 import 'package:healthcheck/widgets/default_system_overlay.dart';
 import 'package:healthcheck/widgets/section_header.dart';
-import 'package:healthcheck/widgets/stadium_border_button.dart';
 import 'package:sizer/sizer.dart';
 import 'package:stacked/stacked.dart';
 
@@ -42,88 +42,14 @@ class CartView extends StatelessWidget {
               children: [
                 const SectionHeader(title: 'Order Review'),
                 Gap(4.h),
-                Container(
-                  height: 26.h,
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: context.onSurface.withOpacity(0.5),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: List.generate(
+                    model.tests.length,
+                    (index) => CartOrderCard(
+                      test: model.tests[index],
                     ),
-                    borderRadius: BorderRadius.circular(2.1.w),
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        height: 5.5.h,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(2.1.w),
-                            topRight: Radius.circular(2.1.w),
-                          ),
-                          color: context.primaryColor.withOpacity(0.8),
-                        ),
-                        child: Center(
-                          child: Text(
-                            'Pathology Tests',
-                            style: TextStyle(
-                              fontSize: 10.5.sp,
-                              fontWeight: FontWeight.bold,
-                              color: kcWhite,
-                            ),
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 5.w,
-                            vertical: 2.h,
-                          ),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    'Thyroid Profile',
-                                    style: GoogleFonts.inter(
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 11.25.sp,
-                                    ),
-                                  ),
-                                  Text(
-                                    '₹1000',
-                                    style: GoogleFonts.inter(
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 12.sp,
-                                      color: context.primaryColor,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              const Spacer(),
-                              StadiumBorderButton(
-                                label: 'Remove',
-                                icon: Icons.delete_outline,
-                                onTap: () {},
-                              ),
-                              Gap(1.1.h),
-                              StadiumBorderButton(
-                                label: 'Upload Prescription (Optional)',
-                                icon: Icons.upload_outlined,
-                                onTap: () {},
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
                   ),
                 ),
                 Gap(2.h),

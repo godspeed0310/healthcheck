@@ -3,6 +3,7 @@ import 'package:gap/gap.dart';
 import 'package:healthcheck/constants/app_extensions.dart';
 import 'package:healthcheck/constants/shared_constants.dart';
 import 'package:healthcheck/gen/assets.gen.dart';
+import 'package:healthcheck/models/appointment.dart';
 import 'package:healthcheck/viewmodels/transaction_success_view_model.dart';
 import 'package:healthcheck/widgets/cta_button.dart';
 import 'package:healthcheck/widgets/default_system_overlay.dart';
@@ -11,17 +12,21 @@ import 'package:sizer/sizer.dart';
 import 'package:stacked/stacked.dart';
 
 class TransactionSuccessView extends StatelessWidget {
-  final DateTime appointmentDate;
+  final Appointment appointment;
 
-  const TransactionSuccessView({super.key, required this.appointmentDate});
+  const TransactionSuccessView({
+    super.key,
+    required this.appointment,
+  });
 
   @override
   Widget build(BuildContext context) {
     final String formattedDateTime =
-        DateFormat('d MMM y | h a').format(appointmentDate);
+        DateFormat('d MMM y | h a').format(appointment.scheduledDate);
 
     return ViewModelBuilder<TransactionSuccessViewModel>.nonReactive(
       viewModelBuilder: () => TransactionSuccessViewModel(),
+      onViewModelReady: (model) => model.initializeModel(appointment),
       builder: (context, model, child) {
         return DefaultSystemOverlay(
           child: Scaffold(

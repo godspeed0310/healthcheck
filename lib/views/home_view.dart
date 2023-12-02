@@ -20,6 +20,7 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<HomeViewModel>.reactive(
       viewModelBuilder: () => HomeViewModel(),
+      onViewModelReady: (model) => model.init(),
       builder: (context, model, _) {
         return DefaultSystemOverlay(
           child: Scaffold(

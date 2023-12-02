@@ -12,6 +12,8 @@ import 'package:stacked_services/src/navigation/navigation_service.dart';
 import 'package:stacked_services/src/snackbar/snackbar_service.dart';
 import 'package:stacked_shared/stacked_shared.dart';
 
+import '../services/notification_service.dart';
+
 final locator = StackedLocator.instance;
 
 Future<void> setupLocator({
@@ -27,4 +29,5 @@ Future<void> setupLocator({
   locator.registerLazySingleton(() => DialogService());
   locator.registerLazySingleton(() => BottomSheetService());
   locator.registerLazySingleton(() => SnackbarService());
+  locator.registerLazySingleton(() => NotificationService());
 }
