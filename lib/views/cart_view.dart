@@ -28,11 +28,8 @@ class CartView extends StatelessWidget {
               title: const Text('My Cart'),
               actions: [
                 IconButton(
-                  onPressed: () {},
-                  icon: const Icon(
-                    Icons.more_vert,
-                    color: kcSecondary,
-                  ),
+                  onPressed: () => model.clearCart(context),
+                  icon: const Icon(Icons.delete_outline),
                 ),
               ],
             ),

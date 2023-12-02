@@ -23,6 +23,22 @@ class CartViewModel extends BaseViewModel {
   final ValueListenable cartListenable =
       Hive.box<MedicalTest>('cart').listenable();
   List<MedicalTest> get tests => cartListenable.value.values.toList();
+  final DialogService _dialogService = locator<DialogService>();
+
+  void clearCart(BuildContext context) async {
+    DialogResponse? response = await _dialogService.showConfirmationDialog(
+      title: 'Clear Cart',
+      description: 'Are you sure you want to clear your cart?',
+      cancelTitle: 'No',
+      confirmationTitle: 'Yes',
+      cancelTitleColor: context.primaryColor,
+      barrierDismissible: true,
+    );
+    if (response?.confirmed == true) {
+      _hiveService.clearCart();
+      notifyListeners();
+    }
+  }
 
   void setConditionStatus(bool value) {
     conditionsAccepted = value;
