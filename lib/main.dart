@@ -30,7 +30,7 @@ class HealthCheckApp extends StatelessWidget {
         return ThemeBuilder(
           lightTheme: kThLight,
           darkTheme: kThDark,
-          defaultThemeMode: ThemeMode.dark,
+          defaultThemeMode: ThemeMode.light,
           builder: (context, lightTheme, darkTheme, themeMode) {
             return MaterialApp(
               debugShowCheckedModeBanner: false,

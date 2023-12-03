@@ -11,6 +11,7 @@ import 'package:stacked_services/src/dialog/dialog_service.dart';
 import 'package:stacked_services/src/navigation/navigation_service.dart';
 import 'package:stacked_services/src/snackbar/snackbar_service.dart';
 import 'package:stacked_shared/stacked_shared.dart';
+import 'package:stacked_themes/src/theme_service.dart';
 
 import '../services/hive_service.dart';
 import '../services/notification_service.dart';
@@ -34,4 +35,5 @@ Future<void> setupLocator({
   locator.registerLazySingleton(() => NotificationService());
   locator.registerLazySingleton(() => HiveService());
   locator.registerLazySingleton(() => PickerService());
+  locator.registerLazySingleton(() => ThemeService.getInstance());
 }

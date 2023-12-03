@@ -26,6 +26,13 @@ class HomeView extends StatelessWidget {
         return DefaultSystemOverlay(
           child: Scaffold(
             appBar: AppBar(
+              leading: IconButton(
+                color: context.primaryColor,
+                icon: context.isDarkEnabled
+                    ? const Icon(Icons.light_mode)
+                    : const Icon(Icons.dark_mode),
+                onPressed: () => model.switchThemes(),
+              ),
               centerTitle: true,
               title: const Text('Health Check'),
               surfaceTintColor: context.scaffoldBackgroundColor,

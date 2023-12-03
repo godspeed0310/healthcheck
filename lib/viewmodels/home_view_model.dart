@@ -7,6 +7,7 @@ import 'package:healthcheck/services/hive_service.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
+import 'package:stacked_themes/stacked_themes.dart';
 
 class HomeViewModel extends BaseViewModel {
   final SnackbarService _snackbarService = locator<SnackbarService>();
@@ -15,6 +16,15 @@ class HomeViewModel extends BaseViewModel {
   final ValueListenable cartListenable =
       Hive.box<MedicalTest>('cart').listenable();
   List<MedicalTest> get cart => cartListenable.value.values.toList();
+  final ThemeService _themeService = locator<ThemeService>();
+
+  switchThemes() {
+    if (_themeService.isDarkMode) {
+      _themeService.setThemeMode(ThemeManagerMode.light);
+    } else {
+      _themeService.setThemeMode(ThemeManagerMode.dark);
+    }
+  }
 
   initializeModel() {
     log.i(cart);

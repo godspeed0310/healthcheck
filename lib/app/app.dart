@@ -5,6 +5,7 @@ import 'package:healthcheck/views/home_view.dart';
 import 'package:healthcheck/views/transaction_success.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
+import 'package:stacked_themes/stacked_themes.dart';
 
 @StackedApp(
   routes: [
@@ -19,6 +20,10 @@ import 'package:stacked_services/stacked_services.dart';
     LazySingleton(classType: NotificationService),
     LazySingleton(classType: HiveService),
     LazySingleton(classType: PickerService),
+    LazySingleton(
+      classType: ThemeService,
+      resolveUsing: ThemeService.getInstance,
+    ),
   ],
   logger: StackedLogger(),
 )
