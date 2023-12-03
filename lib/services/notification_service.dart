@@ -5,7 +5,7 @@ class NotificationService {
   final AwesomeNotifications awesomeNotifications = AwesomeNotifications();
   final log = getLogger('NotificationService');
 
-  void initialize() {
+  Future<void> initialize() async {
     awesomeNotifications.initialize(
       null,
       [
@@ -16,15 +16,20 @@ class NotificationService {
         ),
       ],
     );
+
     log.i('Notification Service initialized');
+    bool status = await requestPermissions();
+    log.i('Notification permissions status: $status');
   }
 
-  void requestPermissions() {
-    awesomeNotifications.isNotificationAllowed().then((isAllowed) {
+  Future<bool> requestPermissions() async {
+    await awesomeNotifications.isNotificationAllowed().then((isAllowed) {
       if (!isAllowed) {
         AwesomeNotifications().requestPermissionToSendNotifications();
       }
     });
+    bool status = await awesomeNotifications.isNotificationAllowed();
+    return status;
   }
 
   void showScheduleNotification({required String title}) async {

@@ -13,7 +13,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await setupLocator();
   await locator<HiveService>().init();
-  locator<NotificationService>().initialize();
+  await locator<NotificationService>().initialize();
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
   await ThemeManager.initialise();
