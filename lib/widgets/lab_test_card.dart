@@ -75,12 +75,42 @@ class LabTestCard extends StatelessWidget {
                       fontSize: 7.sp,
                     ),
                   ),
-                  Text(
-                    '₹${medicalTest.price}',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: context.primaryColor,
-                    ),
+                  Builder(
+                    builder: (_) {
+                      if (medicalTest.discountedPrice != null) {
+                        return Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(
+                              '₹${medicalTest.price}',
+                              style: TextStyle(
+                                fontSize: 7.sp,
+                                color: context.primaryColor,
+                                decoration: TextDecoration.lineThrough,
+                                decorationColor: context.primaryColor,
+                              ),
+                            ),
+                            Gap(1.w),
+                            Text(
+                              '₹${medicalTest.discountedPrice}',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: context.primaryColor,
+                              ),
+                            ),
+                          ],
+                        );
+                      } else {
+                        return Text(
+                          '₹${medicalTest.price}',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: context.primaryColor,
+                          ),
+                        );
+                      }
+                    },
                   ),
                   const Spacer(),
                   ValueListenableBuilder(
