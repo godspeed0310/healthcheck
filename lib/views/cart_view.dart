@@ -36,6 +36,7 @@ class CartView extends StatelessWidget {
                   ),
                 ),
               ],
+              surfaceTintColor: context.scaffoldBackgroundColor,
             ),
             body: Builder(
               builder: (_) {

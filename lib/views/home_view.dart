@@ -28,6 +28,7 @@ class HomeView extends StatelessWidget {
             appBar: AppBar(
               centerTitle: true,
               title: const Text('Health Check'),
+              surfaceTintColor: context.scaffoldBackgroundColor,
               actions: [
                 Padding(
                   padding: EdgeInsets.only(right: 5.w),

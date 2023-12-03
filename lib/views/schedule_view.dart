@@ -24,6 +24,7 @@ class ScheduleView extends StatelessWidget {
           child: Scaffold(
             appBar: AppBar(
               title: const Text('Book Appointment'),
+              surfaceTintColor: context.scaffoldBackgroundColor,
             ),
             body: ListView(
               physics: const BouncingScrollPhysics(),

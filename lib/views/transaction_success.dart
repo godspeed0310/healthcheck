@@ -35,6 +35,7 @@ class TransactionSuccessView extends StatelessWidget {
               title: const Text(
                 'Transaction Successful',
               ),
+              surfaceTintColor: context.scaffoldBackgroundColor,
             ),
             body: Center(
               child: Container(
