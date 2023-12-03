@@ -92,14 +92,53 @@ class PackageCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text(
-                    '₹${package.price}/-',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 13.5.sp,
-                      color: kcSecondary,
-                    ),
+                  Builder(
+                    builder: (_) {
+                      if (package.discountedPrice != null) {
+                        return Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(
+                              '₹${package.price}',
+                              style: TextStyle(
+                                fontSize: 7.sp,
+                                color: kcSecondary,
+                                decoration: TextDecoration.lineThrough,
+                                decorationColor: kcSecondary,
+                              ),
+                            ),
+                            Gap(1.w),
+                            Text(
+                              '₹${package.discountedPrice}',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: kcSecondary,
+                                fontSize: 13.5.sp,
+                              ),
+                            ),
+                          ],
+                        );
+                      } else {
+                        return Text(
+                          '₹${package.price}',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 13.5.sp,
+                            color: kcSecondary,
+                          ),
+                        );
+                      }
+                    },
                   ),
+                  // Text(
+                  //   '₹${package.price}/-',
+                  //   style: TextStyle(
+                  //     fontWeight: FontWeight.bold,
+                  //     fontSize: 13.5.sp,
+                  //     color: kcSecondary,
+                  //   ),
+                  // ),
                   ValueListenableBuilder(
                     valueListenable: cartListenable,
                     builder: (_, value, __) {
