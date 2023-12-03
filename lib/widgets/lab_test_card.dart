@@ -83,7 +83,7 @@ class LabTestCard extends StatelessWidget {
                   CTAButton(
                     label: inCart ? 'In cart' : 'Add to Cart',
                     onPressed: ctaAction,
-                    color: inCart ? kcSecondary : kcPrimary,
+                    color: inCart ? kcSecondary : context.primaryColor,
                   ),
                   Gap(1.h),
                   const CTAButton(

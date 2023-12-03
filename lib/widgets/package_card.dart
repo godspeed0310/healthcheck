@@ -95,7 +95,7 @@ class PackageCard extends StatelessWidget {
               ),
               CTAButton(
                 onPressed: ctaAction,
-                color: inCart ? kcSecondary : kcPrimary,
+                color: inCart ? kcSecondary : context.primaryColor,
                 label: inCart ? 'In cart' : 'Add to Cart',
                 size: Size(30.w, 4.h),
                 type: CTAButtonType.outlined,

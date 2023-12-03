@@ -32,40 +32,41 @@ class HomeView extends StatelessWidget {
               actions: [
                 Padding(
                   padding: EdgeInsets.only(right: 5.w),
-                  child: CustomOpenContainer(
-                    onClosed: (_) => model.update(),
-                    closedBuilder: (_, __) {
-                      return ValueListenableBuilder(
-                        valueListenable: model.cartListenable,
-                        builder: (context, value, _) {
-                          return bd.Badge(
-                            position: bd.BadgePosition.topEnd(
-                              end: 5,
-                              top: 0,
-                            ),
-                            badgeStyle: bd.BadgeStyle(
-                              padding: EdgeInsets.all(1.w),
-                            ),
-                            badgeContent: Text(
-                              value.length.toString(),
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 8.sp,
-                              ),
-                            ),
-                            child: IconButton(
+                  child: ValueListenableBuilder(
+                    valueListenable: model.cartListenable,
+                    builder: (context, value, _) {
+                      return bd.Badge(
+                        showBadge: value.length != 0,
+                        position: bd.BadgePosition.topEnd(
+                          end: 5,
+                          top: 0,
+                        ),
+                        badgeStyle: bd.BadgeStyle(
+                          padding: EdgeInsets.all(1.w),
+                        ),
+                        badgeContent: Text(
+                          value.length.toString(),
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 8.sp,
+                          ),
+                        ),
+                        child: CustomOpenContainer(
+                          onClosed: (_) => model.update(),
+                          closedBuilder: (_, __) {
+                            return IconButton(
                               onPressed: null,
                               icon: Icon(
                                 Icons.shopping_cart,
                                 color: context.primaryColor,
                               ),
-                            ),
-                          );
-                        },
+                            );
+                          },
+                          openBuilder: (_, __) {
+                            return const CartView();
+                          },
+                        ),
                       );
-                    },
-                    openBuilder: (_, __) {
-                      return const CartView();
                     },
                   ),
                 ),
