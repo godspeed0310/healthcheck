@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class CartAmountComponent extends StatelessWidget {
+class CartAmountCard extends StatelessWidget {
   final String title;
   final int amount;
   final TextStyle? titleStyle;
   final TextStyle? amountStyle;
 
-  const CartAmountComponent({
+  const CartAmountCard({
     super.key,
     required this.title,
     required this.amount,
