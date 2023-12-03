@@ -37,6 +37,11 @@ class HomeView extends StatelessWidget {
               title: const Text('Health Check'),
               surfaceTintColor: context.scaffoldBackgroundColor,
               actions: [
+                IconButton(
+                  onPressed: () {},
+                  icon: const Icon(Icons.history),
+                  color: context.primaryColor,
+                ),
                 Padding(
                   padding: EdgeInsets.only(right: 5.w),
                   child: ValueListenableBuilder(
