@@ -34,4 +34,24 @@ class HiveService {
     final box = Hive.box<MedicalTest>('cart');
     return box.values.toList();
   }
+
+  Future<void> createAppointment(Appointment appointment) async {
+    final box = Hive.box<Appointment>('appointments');
+    await box.put(appointment.id, appointment);
+  }
+
+  Future<void> deleteAppointment(Appointment appointment) async {
+    final box = Hive.box<Appointment>('appointments');
+    await box.delete(appointment.id);
+  }
+
+  Future<void> clearHistory() async {
+    final box = Hive.box<MedicalTest>('appointments');
+    await box.clear();
+  }
+
+  Future<List<Appointment>> getAppoitmentHistory() async {
+    final box = Hive.box<Appointment>('appointments');
+    return box.values.toList();
+  }
 }

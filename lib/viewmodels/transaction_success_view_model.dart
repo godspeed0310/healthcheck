@@ -22,6 +22,7 @@ class TransactionSuccessViewModel extends BaseViewModel {
         title: 'Thanks for purchasing ${appointment.tests.length} tests',
       );
     }
+    _hiveService.createAppointment(appointment);
   }
 
   back() async {

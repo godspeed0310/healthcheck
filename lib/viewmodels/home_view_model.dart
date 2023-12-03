@@ -48,9 +48,11 @@ class HomeViewModel extends BaseViewModel {
     log.i(cart);
   }
 
-  bool isAddedToCart(MedicalTest test) => cart.contains(test);
+  openUserHistory() {
+    _navigationService.navigateToAppointmentHistoryView();
+  }
 
-  // bool get isAddedToCart(MedicalTest test) => cart.contains(test);
+  bool isAddedToCart(MedicalTest test) => cart.contains(test);
 
   void addToCart(MedicalTest test) {
     if (isAddedToCart(test)) {

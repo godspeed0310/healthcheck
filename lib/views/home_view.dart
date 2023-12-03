@@ -38,7 +38,7 @@ class HomeView extends StatelessWidget {
               surfaceTintColor: context.scaffoldBackgroundColor,
               actions: [
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () => model.openUserHistory(),
                   icon: const Icon(Icons.history),
                   color: context.primaryColor,
                 ),
