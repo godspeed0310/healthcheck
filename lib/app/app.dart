@@ -1,6 +1,7 @@
 import 'package:healthcheck/services/hive_service.dart';
 import 'package:healthcheck/services/notification_service.dart';
 import 'package:healthcheck/services/picker_service.dart';
+import 'package:healthcheck/views/details_view.dart';
 import 'package:healthcheck/views/home_view.dart';
 import 'package:healthcheck/views/transaction_success.dart';
 import 'package:stacked/stacked_annotations.dart';
@@ -11,6 +12,7 @@ import 'package:stacked_themes/stacked_themes.dart';
   routes: [
     MaterialRoute(page: HomeView, initial: true),
     MaterialRoute(page: TransactionSuccessView),
+    MaterialRoute(page: DetailsView),
   ],
   dependencies: [
     LazySingleton(classType: NavigationService),

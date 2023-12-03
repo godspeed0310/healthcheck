@@ -64,7 +64,6 @@ class HomeView extends StatelessWidget {
                           ),
                         ),
                         child: CustomOpenContainer(
-                          onClosed: (_) => model.update(),
                           closedBuilder: (_, __) {
                             return IconButton(
                               onPressed: null,
@@ -106,12 +105,14 @@ class HomeView extends StatelessWidget {
                   ),
                   itemBuilder: (_, index) {
                     MedicalTest medicalTest = SampleData().labTest[index];
-                    final bool inCart = model.cart.contains(medicalTest);
 
                     return LabTestCard(
                       ctaAction: () => model.addToCart(medicalTest),
                       medicalTest: medicalTest,
-                      inCart: inCart,
+                      cartListenable: model.cartListenable,
+                      openDetails: () => model.openDetails(
+                        medicalTest,
+                      ),
                     );
                   },
                 ),
@@ -135,7 +136,12 @@ class HomeView extends StatelessWidget {
 
                       return PackageCard(
                         package: package,
-                        inCart: inCart,
+                        cartListenable: model.cartListenable,
+                        onCardTap: () => model.openDetails(
+                          package,
+                          isPackage: true,
+                          inCart: inCart,
+                        ),
                         ctaAction: () => model.addToCart(package),
                       );
                     },

@@ -14,6 +14,14 @@ import 'package:flutter/services.dart';
 class $AssetsIllustrationsGen {
   const $AssetsIllustrationsGen();
 
+  /// File path: assets/illustrations/details_illustration_dark.svg
+  SvgGenImage get detailsIllustrationDark =>
+      const SvgGenImage('assets/illustrations/details_illustration_dark.svg');
+
+  /// File path: assets/illustrations/details_illustration_light.svg
+  SvgGenImage get detailsIllustrationLight =>
+      const SvgGenImage('assets/illustrations/details_illustration_light.svg');
+
   /// File path: assets/illustrations/empty_cart_illustration.svg
   SvgGenImage get emptyCartIllustration =>
       const SvgGenImage('assets/illustrations/empty_cart_illustration.svg');
@@ -23,8 +31,12 @@ class $AssetsIllustrationsGen {
       'assets/illustrations/transaction_successful_illustration.svg');
 
   /// List of all assets
-  List<SvgGenImage> get values =>
-      [emptyCartIllustration, transactionSuccessfulIllustration];
+  List<SvgGenImage> get values => [
+        detailsIllustrationDark,
+        detailsIllustrationLight,
+        emptyCartIllustration,
+        transactionSuccessfulIllustration
+      ];
 }
 
 class Assets {

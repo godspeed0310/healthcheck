@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:healthcheck/app/app.locator.dart';
 import 'package:healthcheck/app/app.logger.dart';
+import 'package:healthcheck/app/app.router.dart';
 import 'package:healthcheck/constants/app_extensions.dart';
 import 'package:healthcheck/models/medical_test.dart';
 import 'package:healthcheck/services/hive_service.dart';
@@ -17,6 +18,7 @@ class HomeViewModel extends BaseViewModel {
       Hive.box<MedicalTest>('cart').listenable();
   List<MedicalTest> get cart => cartListenable.value.values.toList();
   final ThemeService _themeService = locator<ThemeService>();
+  final NavigationService _navigationService = locator<NavigationService>();
 
   switchThemes() {
     if (_themeService.isDarkMode) {
@@ -26,12 +28,24 @@ class HomeViewModel extends BaseViewModel {
     }
   }
 
-  initializeModel() {
-    log.i(cart);
+  void openDetails(
+    MedicalTest test, {
+    bool isPackage = false,
+    bool inCart = false,
+  }) {
+    _navigationService.navigateTo(
+      Routes.detailsView,
+      arguments: DetailsViewArguments(
+        test: test,
+        onAddToCart: () => addToCart(test),
+        isPackage: isPackage,
+        cartListenable: cartListenable,
+      ),
+    );
   }
 
-  void update() {
-    notifyListeners();
+  initializeModel() {
+    log.i(cart);
   }
 
   bool isAddedToCart(MedicalTest test) => cart.contains(test);

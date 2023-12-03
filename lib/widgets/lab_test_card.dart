@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:healthcheck/constants/app_extensions.dart';
@@ -9,13 +10,15 @@ import 'package:sizer/sizer.dart';
 class LabTestCard extends StatelessWidget {
   final VoidCallback? ctaAction;
   final MedicalTest medicalTest;
-  final bool inCart;
+  final ValueListenable cartListenable;
+  final VoidCallback? openDetails;
 
   const LabTestCard({
     super.key,
     this.ctaAction,
     required this.medicalTest,
-    this.inCart = false,
+    required this.cartListenable,
+    this.openDetails,
   });
 
   @override
@@ -80,13 +83,21 @@ class LabTestCard extends StatelessWidget {
                     ),
                   ),
                   const Spacer(),
-                  CTAButton(
-                    label: inCart ? 'In cart' : 'Add to Cart',
-                    onPressed: ctaAction,
-                    color: inCart ? kcSecondary : context.primaryColor,
+                  ValueListenableBuilder(
+                    valueListenable: cartListenable,
+                    builder: (context, value, _) {
+                      final bool inCart = value.values.contains(medicalTest);
+
+                      return CTAButton(
+                        label: inCart ? 'In cart' : 'Add to Cart',
+                        onPressed: ctaAction,
+                        color: inCart ? kcSecondary : context.primaryColor,
+                      );
+                    },
                   ),
                   Gap(1.h),
-                  const CTAButton(
+                  CTAButton(
+                    onPressed: openDetails,
                     label: 'View Details',
                     type: CTAButtonType.outlined,
                   ),
