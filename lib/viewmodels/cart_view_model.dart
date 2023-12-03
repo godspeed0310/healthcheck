@@ -73,16 +73,17 @@ class CartViewModel extends BaseViewModel {
     );
   }
 
-  void completeTransaction() {
+  void completeTransaction() async {
     Appointment appointment = Appointment(
       id: '1',
       tests: tests,
       scheduledDate: _selectedDateTime!,
     );
 
-    _navigationService.replaceWithTransactionSuccessView(
+    await _navigationService.replaceWithTransactionSuccessView(
       appointment: appointment,
     );
+    _hiveService.clearCart();
   }
 
   updateDate(DateTime? date, BuildContext context) {

@@ -1,4 +1,5 @@
 import 'package:healthcheck/app/app.locator.dart';
+import 'package:healthcheck/app/app.router.dart';
 import 'package:healthcheck/models/appointment.dart';
 import 'package:healthcheck/services/notification_service.dart';
 import 'package:stacked/stacked.dart';
@@ -21,5 +22,7 @@ class TransactionSuccessViewModel extends BaseViewModel {
     }
   }
 
-  get back => _navigationService.back();
+  void back() {
+    _navigationService.replaceWithHomeView();
+  }
 }
