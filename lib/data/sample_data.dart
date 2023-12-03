@@ -46,4 +46,60 @@ class SampleData {
       tests: ['25-hydroxyvitamin D'],
     ),
   ];
+
+  List<MedicalTest> packages = [
+    const MedicalTest(
+      name: "Basic Health Checkup",
+      description:
+          "A comprehensive screening package to assess your overall health.",
+      price: 1500,
+      tests: [
+        "Complete Blood Count (CBC)",
+        "Erythrocyte Sedimentation Rate (ESR)",
+        "Blood Sugar Fasting",
+        "Blood Sugar Postprandial",
+        "Kidney Function Tests (KFT)",
+        "Liver Function Tests (LFT)",
+        "Lipid Profile"
+      ],
+    ),
+    const MedicalTest(
+      name: "Advanced Health Checkup",
+      description:
+          "An in-depth checkup to identify potential health risks and provide personalized recommendations.",
+      price: 2500,
+      discountedPrice: 2200,
+      tests: [
+        "All tests from Basic Health Checkup",
+        "Thyroid Function Tests (TFT)",
+        "Electrocardiogram (ECG)",
+        "Chest X-ray"
+      ],
+    ),
+    const MedicalTest(
+      name: "Women's Health Checkup",
+      description:
+          "A tailored checkup for women, focusing on reproductive health and overall well-being.",
+      price: 2000,
+      discountedPrice: 1800,
+      tests: [
+        "All tests from Basic Health Checkup",
+        "Pap Smear",
+        "Mammogram or Ultrasound (depending on age)",
+        "Bone Density Scan (for women over 50)"
+      ],
+    ),
+    const MedicalTest(
+      name: "Men's Health Checkup",
+      description:
+          "A comprehensive checkup for men, addressing common health concerns and preventive measures.",
+      price: 1800,
+      discountedPrice: 1600,
+      tests: [
+        "All tests from Basic Health Checkup",
+        "Prostate-Specific Antigen (PSA) test",
+        "Testosterone Level Test"
+      ],
+    ),
+  ];
 }

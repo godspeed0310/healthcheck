@@ -116,12 +116,19 @@ class HomeView extends StatelessWidget {
                     shrinkWrap: true,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (_, index) {
-                      return const PackageCard();
+                      MedicalTest package = SampleData().packages[index];
+                      final bool inCart = model.cart.contains(package);
+
+                      return PackageCard(
+                        package: package,
+                        inCart: inCart,
+                        ctaAction: () => model.addToCart(package),
+                      );
                     },
                     separatorBuilder: (_, __) {
                       return Gap(5.w);
                     },
-                    itemCount: 5,
+                    itemCount: SampleData().packages.length,
                   ),
                 ),
               ],

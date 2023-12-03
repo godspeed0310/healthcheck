@@ -3,11 +3,21 @@ import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:healthcheck/constants/app_extensions.dart';
 import 'package:healthcheck/constants/shared_constants.dart';
+import 'package:healthcheck/models/medical_test.dart';
 import 'package:healthcheck/widgets/cta_button.dart';
 import 'package:sizer/sizer.dart';
 
 class PackageCard extends StatelessWidget {
-  const PackageCard({super.key});
+  final MedicalTest package;
+  final bool inCart;
+  final VoidCallback ctaAction;
+
+  const PackageCard({
+    super.key,
+    required this.package,
+    this.inCart = false,
+    required this.ctaAction,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +46,7 @@ class PackageCard extends StatelessWidget {
           ),
           Gap(2.2.h),
           Text(
-            'Full Body Checkup',
+            package.name,
             style: GoogleFonts.inter(
               fontSize: 13.5.sp,
               fontWeight: FontWeight.w500,
@@ -44,25 +54,23 @@ class PackageCard extends StatelessWidget {
           ),
           Gap(1.h),
           Text(
-            'Includes 92 tests',
+            'Includes ${package.tests.length} tests',
             style: TextStyle(
               fontSize: 7.8.sp,
               color: context.onSurface.withOpacity(0.5),
             ),
           ),
-          Text(
-            ' • Blood Glucose Fasting',
-            style: TextStyle(
-              fontSize: 7.8.sp,
-              color: context.onSurface.withOpacity(0.5),
-            ),
-          ),
-          Text(
-            ' • Liver Function Test',
-            style: TextStyle(
-              fontSize: 7.8.sp,
-              color: context.onSurface.withOpacity(0.5),
-            ),
+          ...List.generate(
+            2,
+            (index) {
+              return Text(
+                ' • ${package.tests[index]}',
+                style: TextStyle(
+                  fontSize: 7.8.sp,
+                  color: context.onSurface.withOpacity(0.5),
+                ),
+              );
+            },
           ),
           Text(
             'View more',
@@ -78,7 +86,7 @@ class PackageCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                '₹2000/-',
+                '₹${package.price}/-',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 13.5.sp,
@@ -86,7 +94,9 @@ class PackageCard extends StatelessWidget {
                 ),
               ),
               CTAButton(
-                label: 'Add to Cart',
+                onPressed: ctaAction,
+                color: inCart ? kcSecondary : kcPrimary,
+                label: inCart ? 'In cart' : 'Add to Cart',
                 size: Size(30.w, 4.h),
                 type: CTAButtonType.outlined,
               ),

@@ -35,7 +35,7 @@ class CTAButton extends StatelessWidget {
     final bool isOutlined = type == CTAButtonType.outlined;
     final TextStyle defaultStyle = TextStyle(
       fontWeight: FontWeight.bold,
-      color: isOutlined ? context.primaryColor : kcWhite,
+      color: isOutlined ? color ?? context.primaryColor : kcWhite,
       fontSize: 6.75.sp,
     );
     final Color primary =
@@ -50,7 +50,7 @@ class CTAButton extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: borderRadius ?? BorderRadius.circular(1.3.w),
           color: isOutlined ? context.scaffoldBackgroundColor : primary,
-          border: isOutlined ? Border.all(color: primary) : null,
+          border: isOutlined ? Border.all(color: color ?? primary) : null,
         ),
         child: Center(
           child: Text(
