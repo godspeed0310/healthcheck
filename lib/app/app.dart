@@ -1,5 +1,6 @@
 import 'package:healthcheck/services/hive_service.dart';
 import 'package:healthcheck/services/notification_service.dart';
+import 'package:healthcheck/services/picker_service.dart';
 import 'package:healthcheck/views/home_view.dart';
 import 'package:healthcheck/views/transaction_success.dart';
 import 'package:stacked/stacked_annotations.dart';
@@ -17,6 +18,7 @@ import 'package:stacked_services/stacked_services.dart';
     LazySingleton(classType: SnackbarService),
     LazySingleton(classType: NotificationService),
     LazySingleton(classType: HiveService),
+    LazySingleton(classType: PickerService),
   ],
   logger: StackedLogger(),
 )

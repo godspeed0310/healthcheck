@@ -10,8 +10,14 @@ import 'package:sizer/sizer.dart';
 class CartOrderCard extends StatelessWidget {
   final MedicalTest test;
   final VoidCallback? onRemove;
+  final VoidCallback? onUpload;
 
-  const CartOrderCard({super.key, required this.test, this.onRemove});
+  const CartOrderCard({
+    super.key,
+    required this.test,
+    this.onRemove,
+    this.onUpload,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -89,7 +95,7 @@ class CartOrderCard extends StatelessWidget {
                   StadiumBorderButton(
                     label: 'Upload Prescription (Optional)',
                     icon: Icons.upload_outlined,
-                    onTap: () {},
+                    onTap: onUpload,
                   ),
                 ],
               ),

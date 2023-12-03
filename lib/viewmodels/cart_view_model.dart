@@ -6,6 +6,7 @@ import 'package:healthcheck/constants/app_extensions.dart';
 import 'package:healthcheck/models/appointment.dart';
 import 'package:healthcheck/models/medical_test.dart';
 import 'package:healthcheck/services/hive_service.dart';
+import 'package:healthcheck/services/picker_service.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:stacked/stacked.dart';
@@ -25,6 +26,7 @@ class CartViewModel extends BaseViewModel {
       Hive.box<MedicalTest>('cart').listenable();
   List<MedicalTest> get tests => cartListenable.value.values.toList();
   final DialogService _dialogService = locator<DialogService>();
+  final PickerService _pickerService = locator<PickerService>();
 
   void clearCart(BuildContext context) async {
     DialogResponse? response = await _dialogService.showConfirmationDialog(
@@ -71,6 +73,10 @@ class CartViewModel extends BaseViewModel {
       message: 'Removed from cart',
       duration: 3.s,
     );
+  }
+
+  uploadPrescription() async {
+    await _pickerService.getFile();
   }
 
   void completeTransaction() async {

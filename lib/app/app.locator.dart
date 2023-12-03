@@ -14,6 +14,7 @@ import 'package:stacked_shared/stacked_shared.dart';
 
 import '../services/hive_service.dart';
 import '../services/notification_service.dart';
+import '../services/picker_service.dart';
 
 final locator = StackedLocator.instance;
 
@@ -32,4 +33,5 @@ Future<void> setupLocator({
   locator.registerLazySingleton(() => SnackbarService());
   locator.registerLazySingleton(() => NotificationService());
   locator.registerLazySingleton(() => HiveService());
+  locator.registerLazySingleton(() => PickerService());
 }

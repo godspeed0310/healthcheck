@@ -90,6 +90,7 @@ class CartView extends StatelessWidget {
                           return CartOrderCard(
                             test: test,
                             onRemove: () => model.removeFromCart(test),
+                            onUpload: () => model.uploadPrescription(),
                           );
                         },
                         separatorBuilder: (_, __) {
