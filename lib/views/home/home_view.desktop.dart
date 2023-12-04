@@ -1,3 +1,4 @@
+import 'package:badges/badges.dart' as bd;
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -6,6 +7,8 @@ import 'package:healthcheck/constants/shared_constants.dart';
 import 'package:healthcheck/data/sample_data.dart';
 import 'package:healthcheck/models/medical_test.dart';
 import 'package:healthcheck/viewmodels/home_view_model.dart';
+import 'package:healthcheck/views/cart_view.dart';
+import 'package:healthcheck/widgets/custom_open_container.dart';
 import 'package:healthcheck/widgets/default_system_overlay.dart';
 import 'package:healthcheck/widgets/lab_test_card.dart';
 import 'package:healthcheck/widgets/package_card.dart';
@@ -31,7 +34,7 @@ class HomeViewDesktop extends StatelessWidget {
                     child: Container(
                       height: 127,
                       padding: const EdgeInsets.symmetric(
-                        horizontal: 150,
+                        horizontal: 140,
                         vertical: 40,
                       ),
                       child: Row(
@@ -64,14 +67,50 @@ class HomeViewDesktop extends StatelessWidget {
                             ),
                           ),
                           const Gap(15),
-                          const StadiumBorderButton(
-                            label: 'Cart',
-                            icon: Icons.shopping_cart,
-                            padding: EdgeInsets.symmetric(
-                              horizontal: 28,
-                              vertical: 12,
-                            ),
-                            iconPadding: 16,
+                          CustomOpenContainer(
+                            closedBuilder: (_, __) {
+                              return ValueListenableBuilder(
+                                valueListenable: model.cartListenable,
+                                builder: (_, value, __) {
+                                  final int cartCount = value.length;
+
+                                  if (cartCount == 0) {
+                                    return const StadiumBorderButton(
+                                      onTap: null,
+                                      label: 'Cart',
+                                      icon: Icons.shopping_cart,
+                                      padding: EdgeInsets.symmetric(
+                                        horizontal: 16,
+                                        vertical: 10,
+                                      ),
+                                      iconPadding: 16,
+                                    );
+                                  } else {
+                                    return StadiumBorderButton(
+                                      onTap: null,
+                                      label: 'Cart',
+                                      icon: Icons.shopping_cart,
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 16,
+                                        vertical: 5,
+                                      ),
+                                      iconPadding: 16,
+                                      action: bd.Badge(
+                                        badgeStyle: const bd.BadgeStyle(
+                                          shape: bd.BadgeShape.circle,
+                                          padding: EdgeInsets.all(8),
+                                        ),
+                                        badgeContent: Text('$cartCount'),
+                                        showBadge: cartCount > 0,
+                                      ),
+                                    );
+                                  }
+                                },
+                              );
+                            },
+                            openBuilder: (_, __) {
+                              return const CartView();
+                            },
                           ),
                         ],
                       ),
