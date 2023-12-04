@@ -1,130 +1,170 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 // **************************************************************************
-// StackedNavigatorGenerator
+// StackedRouterGenerator
 // **************************************************************************
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:flutter/foundation.dart' as _i9;
-import 'package:flutter/material.dart' as _i6;
-import 'package:flutter/material.dart';
-import 'package:healthcheck/models/appointment.dart' as _i7;
-import 'package:healthcheck/models/medical_test.dart' as _i8;
-import 'package:healthcheck/views/appointment_history_view.dart' as _i5;
-import 'package:healthcheck/views/details_view.dart' as _i4;
-import 'package:healthcheck/views/home_view.dart' as _i2;
-import 'package:healthcheck/views/transaction_success.dart' as _i3;
-import 'package:stacked/stacked.dart' as _i1;
-import 'package:stacked_services/stacked_services.dart' as _i10;
+import 'package:flutter/foundation.dart' as _i10;
+import 'package:flutter/material.dart' as _i7;
+import 'package:stacked/stacked.dart' as _i6;
+import 'package:stacked_services/stacked_services.dart' as _i5;
 
-class Routes {
-  static const homeView = '/';
+import '../models/appointment.dart' as _i8;
+import '../models/medical_test.dart' as _i9;
+import '../views/appointment_history_view.dart' as _i4;
+import '../views/details_view.dart' as _i3;
+import '../views/home_view.dart' as _i1;
+import '../views/transaction_success.dart' as _i2;
 
-  static const transactionSuccessView = '/transaction-success-view';
+final stackedRouter =
+    StackedRouterWeb(navigatorKey: _i5.StackedService.navigatorKey);
 
-  static const detailsView = '/details-view';
+class StackedRouterWeb extends _i6.RootStackRouter {
+  StackedRouterWeb({_i7.GlobalKey<_i7.NavigatorState>? navigatorKey})
+      : super(navigatorKey);
 
-  static const appointmentHistoryView = '/appointment-history-view';
-
-  static const all = <String>{
-    homeView,
-    transactionSuccessView,
-    detailsView,
-    appointmentHistoryView,
-  };
-}
-
-class StackedRouter extends _i1.RouterBase {
-  final _routes = <_i1.RouteDef>[
-    _i1.RouteDef(
-      Routes.homeView,
-      page: _i2.HomeView,
-    ),
-    _i1.RouteDef(
-      Routes.transactionSuccessView,
-      page: _i3.TransactionSuccessView,
-    ),
-    _i1.RouteDef(
-      Routes.detailsView,
-      page: _i4.DetailsView,
-    ),
-    _i1.RouteDef(
-      Routes.appointmentHistoryView,
-      page: _i5.AppointmentHistoryView,
-    ),
-  ];
-
-  final _pagesMap = <Type, _i1.StackedRouteFactory>{
-    _i2.HomeView: (data) {
-      return _i6.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i2.HomeView(),
-        settings: data,
+  @override
+  final Map<String, _i6.PageFactory> pagesMap = {
+    HomeViewRoute.name: (routeData) {
+      return _i6.CustomPage<dynamic>(
+        routeData: routeData,
+        child: const _i1.HomeView(),
+        opaque: true,
+        barrierDismissible: false,
       );
     },
-    _i3.TransactionSuccessView: (data) {
-      final args = data.getArgs<TransactionSuccessViewArguments>(nullOk: false);
-      return _i6.MaterialPageRoute<dynamic>(
-        builder: (context) => _i3.TransactionSuccessView(
-            key: args.key, appointment: args.appointment),
-        settings: data,
+    TransactionSuccessViewRoute.name: (routeData) {
+      final args = routeData.argsAs<TransactionSuccessViewArgs>();
+      return _i6.CustomPage<dynamic>(
+        routeData: routeData,
+        child: _i2.TransactionSuccessView(
+          key: args.key,
+          appointment: args.appointment,
+        ),
+        opaque: true,
+        barrierDismissible: false,
       );
     },
-    _i4.DetailsView: (data) {
-      final args = data.getArgs<DetailsViewArguments>(nullOk: false);
-      return _i6.MaterialPageRoute<dynamic>(
-        builder: (context) => _i4.DetailsView(
-            key: args.key,
-            test: args.test,
-            isPackage: args.isPackage,
-            onAddToCart: args.onAddToCart,
-            cartListenable: args.cartListenable),
-        settings: data,
+    DetailsViewRoute.name: (routeData) {
+      final args = routeData.argsAs<DetailsViewArgs>();
+      return _i6.CustomPage<dynamic>(
+        routeData: routeData,
+        child: _i3.DetailsView(
+          key: args.key,
+          test: args.test,
+          isPackage: args.isPackage,
+          onAddToCart: args.onAddToCart,
+          cartListenable: args.cartListenable,
+        ),
+        opaque: true,
+        barrierDismissible: false,
       );
     },
-    _i5.AppointmentHistoryView: (data) {
-      return _i6.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i5.AppointmentHistoryView(),
-        settings: data,
+    AppointmentHistoryViewRoute.name: (routeData) {
+      return _i6.CustomPage<dynamic>(
+        routeData: routeData,
+        child: const _i4.AppointmentHistoryView(),
+        opaque: true,
+        barrierDismissible: false,
       );
     },
   };
 
   @override
-  List<_i1.RouteDef> get routes => _routes;
-
-  @override
-  Map<Type, _i1.StackedRouteFactory> get pagesMap => _pagesMap;
+  List<_i6.RouteConfig> get routes => [
+        _i6.RouteConfig(
+          HomeViewRoute.name,
+          path: '/',
+        ),
+        _i6.RouteConfig(
+          TransactionSuccessViewRoute.name,
+          path: '/transaction-success-view',
+        ),
+        _i6.RouteConfig(
+          DetailsViewRoute.name,
+          path: '/details-view',
+        ),
+        _i6.RouteConfig(
+          AppointmentHistoryViewRoute.name,
+          path: '/appointment-history-view',
+        ),
+      ];
 }
 
-class TransactionSuccessViewArguments {
-  const TransactionSuccessViewArguments({
+/// generated route for
+/// [_i1.HomeView]
+class HomeViewRoute extends _i6.PageRouteInfo<void> {
+  const HomeViewRoute()
+      : super(
+          HomeViewRoute.name,
+          path: '/',
+        );
+
+  static const String name = 'HomeView';
+}
+
+/// generated route for
+/// [_i2.TransactionSuccessView]
+class TransactionSuccessViewRoute
+    extends _i6.PageRouteInfo<TransactionSuccessViewArgs> {
+  TransactionSuccessViewRoute({
+    _i7.Key? key,
+    required _i8.Appointment appointment,
+  }) : super(
+          TransactionSuccessViewRoute.name,
+          path: '/transaction-success-view',
+          args: TransactionSuccessViewArgs(
+            key: key,
+            appointment: appointment,
+          ),
+        );
+
+  static const String name = 'TransactionSuccessView';
+}
+
+class TransactionSuccessViewArgs {
+  const TransactionSuccessViewArgs({
     this.key,
     required this.appointment,
   });
 
-  final _i6.Key? key;
+  final _i7.Key? key;
 
-  final _i7.Appointment appointment;
+  final _i8.Appointment appointment;
 
   @override
   String toString() {
-    return '{"key": "$key", "appointment": "$appointment"}';
-  }
-
-  @override
-  bool operator ==(covariant TransactionSuccessViewArguments other) {
-    if (identical(this, other)) return true;
-    return other.key == key && other.appointment == appointment;
-  }
-
-  @override
-  int get hashCode {
-    return key.hashCode ^ appointment.hashCode;
+    return 'TransactionSuccessViewArgs{key: $key, appointment: $appointment}';
   }
 }
 
-class DetailsViewArguments {
-  const DetailsViewArguments({
+/// generated route for
+/// [_i3.DetailsView]
+class DetailsViewRoute extends _i6.PageRouteInfo<DetailsViewArgs> {
+  DetailsViewRoute({
+    _i7.Key? key,
+    required _i9.MedicalTest test,
+    bool isPackage = false,
+    void Function()? onAddToCart,
+    required _i10.ValueListenable<dynamic> cartListenable,
+  }) : super(
+          DetailsViewRoute.name,
+          path: '/details-view',
+          args: DetailsViewArgs(
+            key: key,
+            test: test,
+            isPackage: isPackage,
+            onAddToCart: onAddToCart,
+            cartListenable: cartListenable,
+          ),
+        );
+
+  static const String name = 'DetailsView';
+}
+
+class DetailsViewArgs {
+  const DetailsViewArgs({
     this.key,
     required this.test,
     this.isPackage = false,
@@ -132,181 +172,132 @@ class DetailsViewArguments {
     required this.cartListenable,
   });
 
-  final _i6.Key? key;
+  final _i7.Key? key;
 
-  final _i8.MedicalTest test;
+  final _i9.MedicalTest test;
 
   final bool isPackage;
 
   final void Function()? onAddToCart;
 
-  final _i9.ValueListenable<dynamic> cartListenable;
+  final _i10.ValueListenable<dynamic> cartListenable;
 
   @override
   String toString() {
-    return '{"key": "$key", "test": "$test", "isPackage": "$isPackage", "onAddToCart": "$onAddToCart", "cartListenable": "$cartListenable"}';
-  }
-
-  @override
-  bool operator ==(covariant DetailsViewArguments other) {
-    if (identical(this, other)) return true;
-    return other.key == key &&
-        other.test == test &&
-        other.isPackage == isPackage &&
-        other.onAddToCart == onAddToCart &&
-        other.cartListenable == cartListenable;
-  }
-
-  @override
-  int get hashCode {
-    return key.hashCode ^
-        test.hashCode ^
-        isPackage.hashCode ^
-        onAddToCart.hashCode ^
-        cartListenable.hashCode;
+    return 'DetailsViewArgs{key: $key, test: $test, isPackage: $isPackage, onAddToCart: $onAddToCart, cartListenable: $cartListenable}';
   }
 }
 
-extension NavigatorStateExtension on _i10.NavigationService {
-  Future<dynamic> navigateToHomeView([
-    int? routerId,
-    bool preventDuplicates = true,
-    Map<String, String>? parameters,
-    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
-        transition,
-  ]) async {
-    return navigateTo<dynamic>(Routes.homeView,
-        id: routerId,
-        preventDuplicates: preventDuplicates,
-        parameters: parameters,
-        transition: transition);
+/// generated route for
+/// [_i4.AppointmentHistoryView]
+class AppointmentHistoryViewRoute extends _i6.PageRouteInfo<void> {
+  const AppointmentHistoryViewRoute()
+      : super(
+          AppointmentHistoryViewRoute.name,
+          path: '/appointment-history-view',
+        );
+
+  static const String name = 'AppointmentHistoryView';
+}
+
+extension RouterStateExtension on _i5.RouterService {
+  Future<dynamic> navigateToHomeView(
+      {void Function(_i6.NavigationFailure)? onFailure}) async {
+    return navigateTo(
+      const HomeViewRoute(),
+      onFailure: onFailure,
+    );
   }
 
   Future<dynamic> navigateToTransactionSuccessView({
-    _i6.Key? key,
-    required _i7.Appointment appointment,
-    int? routerId,
-    bool preventDuplicates = true,
-    Map<String, String>? parameters,
-    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
-        transition,
+    _i7.Key? key,
+    required _i8.Appointment appointment,
+    void Function(_i6.NavigationFailure)? onFailure,
   }) async {
-    return navigateTo<dynamic>(Routes.transactionSuccessView,
-        arguments:
-            TransactionSuccessViewArguments(key: key, appointment: appointment),
-        id: routerId,
-        preventDuplicates: preventDuplicates,
-        parameters: parameters,
-        transition: transition);
+    return navigateTo(
+      TransactionSuccessViewRoute(
+        key: key,
+        appointment: appointment,
+      ),
+      onFailure: onFailure,
+    );
   }
 
   Future<dynamic> navigateToDetailsView({
-    _i6.Key? key,
-    required _i8.MedicalTest test,
+    _i7.Key? key,
+    required _i9.MedicalTest test,
     bool isPackage = false,
     void Function()? onAddToCart,
-    required _i9.ValueListenable<dynamic> cartListenable,
-    int? routerId,
-    bool preventDuplicates = true,
-    Map<String, String>? parameters,
-    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
-        transition,
+    required _i10.ValueListenable<dynamic> cartListenable,
+    void Function(_i6.NavigationFailure)? onFailure,
   }) async {
-    return navigateTo<dynamic>(Routes.detailsView,
-        arguments: DetailsViewArguments(
-            key: key,
-            test: test,
-            isPackage: isPackage,
-            onAddToCart: onAddToCart,
-            cartListenable: cartListenable),
-        id: routerId,
-        preventDuplicates: preventDuplicates,
-        parameters: parameters,
-        transition: transition);
+    return navigateTo(
+      DetailsViewRoute(
+        key: key,
+        test: test,
+        isPackage: isPackage,
+        onAddToCart: onAddToCart,
+        cartListenable: cartListenable,
+      ),
+      onFailure: onFailure,
+    );
   }
 
-  Future<dynamic> navigateToAppointmentHistoryView([
-    int? routerId,
-    bool preventDuplicates = true,
-    Map<String, String>? parameters,
-    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
-        transition,
-  ]) async {
-    return navigateTo<dynamic>(Routes.appointmentHistoryView,
-        id: routerId,
-        preventDuplicates: preventDuplicates,
-        parameters: parameters,
-        transition: transition);
+  Future<dynamic> navigateToAppointmentHistoryView(
+      {void Function(_i6.NavigationFailure)? onFailure}) async {
+    return navigateTo(
+      const AppointmentHistoryViewRoute(),
+      onFailure: onFailure,
+    );
   }
 
-  Future<dynamic> replaceWithHomeView([
-    int? routerId,
-    bool preventDuplicates = true,
-    Map<String, String>? parameters,
-    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
-        transition,
-  ]) async {
-    return replaceWith<dynamic>(Routes.homeView,
-        id: routerId,
-        preventDuplicates: preventDuplicates,
-        parameters: parameters,
-        transition: transition);
+  Future<dynamic> replaceWithHomeView(
+      {void Function(_i6.NavigationFailure)? onFailure}) async {
+    return replaceWith(
+      const HomeViewRoute(),
+      onFailure: onFailure,
+    );
   }
 
   Future<dynamic> replaceWithTransactionSuccessView({
-    _i6.Key? key,
-    required _i7.Appointment appointment,
-    int? routerId,
-    bool preventDuplicates = true,
-    Map<String, String>? parameters,
-    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
-        transition,
+    _i7.Key? key,
+    required _i8.Appointment appointment,
+    void Function(_i6.NavigationFailure)? onFailure,
   }) async {
-    return replaceWith<dynamic>(Routes.transactionSuccessView,
-        arguments:
-            TransactionSuccessViewArguments(key: key, appointment: appointment),
-        id: routerId,
-        preventDuplicates: preventDuplicates,
-        parameters: parameters,
-        transition: transition);
+    return replaceWith(
+      TransactionSuccessViewRoute(
+        key: key,
+        appointment: appointment,
+      ),
+      onFailure: onFailure,
+    );
   }
 
   Future<dynamic> replaceWithDetailsView({
-    _i6.Key? key,
-    required _i8.MedicalTest test,
+    _i7.Key? key,
+    required _i9.MedicalTest test,
     bool isPackage = false,
     void Function()? onAddToCart,
-    required _i9.ValueListenable<dynamic> cartListenable,
-    int? routerId,
-    bool preventDuplicates = true,
-    Map<String, String>? parameters,
-    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
-        transition,
+    required _i10.ValueListenable<dynamic> cartListenable,
+    void Function(_i6.NavigationFailure)? onFailure,
   }) async {
-    return replaceWith<dynamic>(Routes.detailsView,
-        arguments: DetailsViewArguments(
-            key: key,
-            test: test,
-            isPackage: isPackage,
-            onAddToCart: onAddToCart,
-            cartListenable: cartListenable),
-        id: routerId,
-        preventDuplicates: preventDuplicates,
-        parameters: parameters,
-        transition: transition);
+    return replaceWith(
+      DetailsViewRoute(
+        key: key,
+        test: test,
+        isPackage: isPackage,
+        onAddToCart: onAddToCart,
+        cartListenable: cartListenable,
+      ),
+      onFailure: onFailure,
+    );
   }
 
-  Future<dynamic> replaceWithAppointmentHistoryView([
-    int? routerId,
-    bool preventDuplicates = true,
-    Map<String, String>? parameters,
-    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
-        transition,
-  ]) async {
-    return replaceWith<dynamic>(Routes.appointmentHistoryView,
-        id: routerId,
-        preventDuplicates: preventDuplicates,
-        parameters: parameters,
-        transition: transition);
+  Future<dynamic> replaceWithAppointmentHistoryView(
+      {void Function(_i6.NavigationFailure)? onFailure}) async {
+    return replaceWith(
+      const AppointmentHistoryViewRoute(),
+      onFailure: onFailure,
+    );
   }
 }

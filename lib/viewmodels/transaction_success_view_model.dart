@@ -7,7 +7,7 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class TransactionSuccessViewModel extends BaseViewModel {
-  final NavigationService _navigationService = locator<NavigationService>();
+  final RouterService _routerService = locator<RouterService>();
   final NotificationService _notificationService =
       locator<NotificationService>();
   final HiveService _hiveService = locator<HiveService>();
@@ -27,6 +27,8 @@ class TransactionSuccessViewModel extends BaseViewModel {
 
   back() async {
     await _hiveService.clearCart();
-    _navigationService.clearStackAndShow(Routes.homeView);
+    _routerService.clearStackAndShow(
+      const PageRouteInfo(HomeViewRoute.name, path: '/'),
+    );
   }
 }

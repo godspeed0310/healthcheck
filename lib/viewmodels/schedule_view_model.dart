@@ -10,7 +10,7 @@ class ScheduleViewModel extends BaseViewModel {
   bool get isValid => selectedDate != null && selectedTime != null;
   bool get isDateSelected => selectedDate != null;
 
-  final NavigationService _navigationService = locator<NavigationService>();
+  final RouterService _routerService = locator<RouterService>();
 
   final log = getLogger('ScheduleViewModel');
 
@@ -55,6 +55,6 @@ class ScheduleViewModel extends BaseViewModel {
       selectedTime!.hour,
       selectedTime!.minute,
     );
-    _navigationService.back<DateTime?>(result: finalDate);
+    _routerService.pop<DateTime?>(finalDate);
   }
 }

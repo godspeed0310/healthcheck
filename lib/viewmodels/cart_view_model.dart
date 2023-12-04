@@ -21,7 +21,7 @@ class CartViewModel extends BaseViewModel {
   final HiveService _hiveService = locator<HiveService>();
   final SnackbarService _snackbarService = locator<SnackbarService>();
   bool conditionsAccepted = false;
-  final NavigationService _navigationService = locator<NavigationService>();
+  final RouterService _routerService = locator<RouterService>();
   final ValueListenable cartListenable =
       Hive.box<MedicalTest>('cart').listenable();
   List<MedicalTest> get tests => cartListenable.value.values.toList();
@@ -89,7 +89,7 @@ class CartViewModel extends BaseViewModel {
       scheduledDate: _selectedDateTime!,
     );
 
-    await _navigationService.replaceWithTransactionSuccessView(
+    await _routerService.replaceWithTransactionSuccessView(
       appointment: appointment,
     );
     _hiveService.clearCart();

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:healthcheck/app/app.locator.dart';
@@ -5,16 +7,18 @@ import 'package:healthcheck/app/app.router.dart';
 import 'package:healthcheck/constants/shared_constants.dart';
 import 'package:healthcheck/services/hive_service.dart';
 import 'package:healthcheck/services/notification_service.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 import 'package:sizer/sizer.dart';
-import 'package:stacked_services/stacked_services.dart';
 import 'package:stacked_themes/stacked_themes.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await setupLocator();
+  await setupLocator(stackedRouter: stackedRouter);
   await locator<HiveService>().init();
   await locator<NotificationService>().initialize();
-  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  if (Platform.isAndroid || Platform.isIOS) {
+    await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  }
 
   await ThemeManager.initialise();
   runApp(const HealthCheckApp());
@@ -32,15 +36,28 @@ class HealthCheckApp extends StatelessWidget {
           darkTheme: kThDark,
           defaultThemeMode: ThemeMode.light,
           builder: (context, lightTheme, darkTheme, themeMode) {
-            return MaterialApp(
-              debugShowCheckedModeBanner: false,
-              title: 'Health Check',
-              theme: lightTheme,
-              darkTheme: darkTheme,
-              themeMode: themeMode,
-              navigatorKey: StackedService.navigatorKey,
-              onGenerateRoute: StackedRouter().onGenerateRoute,
+            return ResponsiveApp(
+              builder: (_) {
+                return MaterialApp.router(
+                  debugShowCheckedModeBanner: false,
+                  title: 'Health Check',
+                  theme: lightTheme,
+                  darkTheme: darkTheme,
+                  themeMode: themeMode,
+                  routerDelegate: stackedRouter.delegate(),
+                  routeInformationParser: stackedRouter.defaultRouteParser(),
+                );
+              },
             );
+            // return MaterialApp(
+            //   debugShowCheckedModeBanner: false,
+            //   title: 'Health Check',
+            //   theme: lightTheme,
+            //   darkTheme: darkTheme,
+            //   themeMode: themeMode,
+            //   navigatorKey: StackedService.navigatorKey,
+            //   onGenerateRoute: StackedRouter().onGenerateRoute,
+            // );
           },
         );
       },

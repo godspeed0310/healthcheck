@@ -18,7 +18,7 @@ class HomeViewModel extends BaseViewModel {
       Hive.box<MedicalTest>('cart').listenable();
   List<MedicalTest> get cart => cartListenable.value.values.toList();
   final ThemeService _themeService = locator<ThemeService>();
-  final NavigationService _navigationService = locator<NavigationService>();
+  final RouterService _routerService = locator<RouterService>();
 
   switchThemes() {
     if (_themeService.isDarkMode) {
@@ -33,14 +33,11 @@ class HomeViewModel extends BaseViewModel {
     bool isPackage = false,
     bool inCart = false,
   }) {
-    _navigationService.navigateTo(
-      Routes.detailsView,
-      arguments: DetailsViewArguments(
-        test: test,
-        onAddToCart: () => addToCart(test),
-        isPackage: isPackage,
-        cartListenable: cartListenable,
-      ),
+    _routerService.navigateToDetailsView(
+      test: test,
+      cartListenable: cartListenable,
+      onAddToCart: () => addToCart(test),
+      isPackage: isPackage,
     );
   }
 
@@ -49,7 +46,7 @@ class HomeViewModel extends BaseViewModel {
   }
 
   openUserHistory() {
-    _navigationService.navigateToAppointmentHistoryView();
+    _routerService.navigateToAppointmentHistoryView();
   }
 
   bool isAddedToCart(MedicalTest test) => cart.contains(test);

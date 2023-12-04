@@ -11,13 +11,13 @@ import 'package:stacked_themes/stacked_themes.dart';
 
 @StackedApp(
   routes: [
-    MaterialRoute(page: HomeView, initial: true),
-    MaterialRoute(page: TransactionSuccessView),
-    MaterialRoute(page: DetailsView),
-    MaterialRoute(page: AppointmentHistoryView),
+    CustomRoute(page: HomeView, initial: true),
+    CustomRoute(page: TransactionSuccessView),
+    CustomRoute(page: DetailsView),
+    CustomRoute(page: AppointmentHistoryView),
   ],
   dependencies: [
-    LazySingleton(classType: NavigationService),
+    LazySingleton(classType: RouterService),
     LazySingleton(classType: DialogService),
     LazySingleton(classType: BottomSheetService),
     LazySingleton(classType: SnackbarService),
