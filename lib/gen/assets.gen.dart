@@ -26,6 +26,10 @@ class $AssetsIllustrationsGen {
   SvgGenImage get emptyCartIllustration =>
       const SvgGenImage('assets/illustrations/empty_cart_illustration.svg');
 
+  /// File path: assets/illustrations/no_appointments_illustration.svg
+  SvgGenImage get noAppointmentsIllustration => const SvgGenImage(
+      'assets/illustrations/no_appointments_illustration.svg');
+
   /// File path: assets/illustrations/transaction_successful_illustration.svg
   SvgGenImage get transactionSuccessfulIllustration => const SvgGenImage(
       'assets/illustrations/transaction_successful_illustration.svg');
@@ -35,6 +39,7 @@ class $AssetsIllustrationsGen {
         detailsIllustrationDark,
         detailsIllustrationLight,
         emptyCartIllustration,
+        noAppointmentsIllustration,
         transactionSuccessfulIllustration
       ];
 }
