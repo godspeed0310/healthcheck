@@ -12,7 +12,7 @@ import 'package:stacked_services/stacked_services.dart' as _i5;
 
 import '../models/appointment.dart' as _i8;
 import '../models/medical_test.dart' as _i9;
-import '../views/appointment_history_view.dart' as _i4;
+import '../views/appointment_history/appointment_history_view.dart' as _i4;
 import '../views/details/details_view.dart' as _i3;
 import '../views/home/home_view.dart' as _i1;
 import '../views/transaction_success.dart' as _i2;

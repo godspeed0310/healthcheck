@@ -10,8 +10,8 @@ import 'package:intl/intl.dart';
 import 'package:sizer/sizer.dart';
 import 'package:stacked/stacked.dart';
 
-class AppointmentHistoryView extends StatelessWidget {
-  const AppointmentHistoryView({super.key});
+class AppointmentHistoryViewMobile extends StatelessWidget {
+  const AppointmentHistoryViewMobile({super.key});
 
   @override
   Widget build(BuildContext context) {

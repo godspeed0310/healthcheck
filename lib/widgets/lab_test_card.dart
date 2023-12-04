@@ -87,6 +87,8 @@ class LabTestCard extends StatelessWidget {
                             (index) {
                               return Text(
                                 ' • ${medicalTest.tests[index]}',
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
                                 style: const TextStyle(
                                   fontSize: 16,
                                 ),
