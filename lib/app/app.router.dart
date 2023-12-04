@@ -13,7 +13,7 @@ import 'package:stacked_services/stacked_services.dart' as _i5;
 import '../models/appointment.dart' as _i8;
 import '../models/medical_test.dart' as _i9;
 import '../views/appointment_history_view.dart' as _i4;
-import '../views/details_view.dart' as _i3;
+import '../views/details/details_view.dart' as _i3;
 import '../views/home/home_view.dart' as _i1;
 import '../views/transaction_success.dart' as _i2;
 
@@ -145,7 +145,7 @@ class DetailsViewRoute extends _i6.PageRouteInfo<DetailsViewArgs> {
   DetailsViewRoute({
     _i7.Key? key,
     required _i9.MedicalTest test,
-    bool isPackage = false,
+    required bool isPackage,
     void Function()? onAddToCart,
     required _i10.ValueListenable<dynamic> cartListenable,
   }) : super(
@@ -167,7 +167,7 @@ class DetailsViewArgs {
   const DetailsViewArgs({
     this.key,
     required this.test,
-    this.isPackage = false,
+    required this.isPackage,
     this.onAddToCart,
     required this.cartListenable,
   });
@@ -226,7 +226,7 @@ extension RouterStateExtension on _i5.RouterService {
   Future<dynamic> navigateToDetailsView({
     _i7.Key? key,
     required _i9.MedicalTest test,
-    bool isPackage = false,
+    required bool isPackage,
     void Function()? onAddToCart,
     required _i10.ValueListenable<dynamic> cartListenable,
     void Function(_i6.NavigationFailure)? onFailure,
@@ -276,7 +276,7 @@ extension RouterStateExtension on _i5.RouterService {
   Future<dynamic> replaceWithDetailsView({
     _i7.Key? key,
     required _i9.MedicalTest test,
-    bool isPackage = false,
+    required bool isPackage,
     void Function()? onAddToCart,
     required _i10.ValueListenable<dynamic> cartListenable,
     void Function(_i6.NavigationFailure)? onFailure,

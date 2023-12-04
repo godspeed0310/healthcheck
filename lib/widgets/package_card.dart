@@ -5,7 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:healthcheck/constants/app_extensions.dart';
 import 'package:healthcheck/constants/shared_constants.dart';
 import 'package:healthcheck/models/medical_test.dart';
-import 'package:healthcheck/views/details_view.dart';
+import 'package:healthcheck/views/details/details_view.dart';
 import 'package:healthcheck/widgets/cta_button.dart';
 import 'package:healthcheck/widgets/custom_open_container.dart';
 import 'package:sizer/sizer.dart';

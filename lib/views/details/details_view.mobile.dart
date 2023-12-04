@@ -9,13 +9,13 @@ import 'package:healthcheck/widgets/cta_button.dart';
 import 'package:healthcheck/widgets/default_system_overlay.dart';
 import 'package:sizer/sizer.dart';
 
-class DetailsView extends StatelessWidget {
+class DetailsViewMobile extends StatelessWidget {
   final MedicalTest test;
   final bool isPackage;
   final VoidCallback? onAddToCart;
   final ValueListenable cartListenable;
 
-  const DetailsView({
+  const DetailsViewMobile({
     super.key,
     required this.test,
     this.isPackage = false,
