@@ -11,6 +11,7 @@ import 'package:healthcheck/widgets/default_system_overlay.dart';
 import 'package:healthcheck/widgets/lab_test_card.dart';
 import 'package:healthcheck/widgets/package_card.dart';
 import 'package:healthcheck/widgets/section_header.dart';
+import 'package:healthcheck/widgets/unbounded_list_view.dart';
 import 'package:sizer/sizer.dart';
 import 'package:stacked/stacked.dart';
 
@@ -120,36 +121,33 @@ class HomeView extends StatelessWidget {
                 const SectionHeader(
                   title: 'Popular Packages',
                 ),
-                SizedBox(
-                  height: 35.h,
-                  child: ListView.separated(
-                    physics: const BouncingScrollPhysics(),
-                    padding: EdgeInsets.symmetric(
-                      vertical: 2.h,
-                      horizontal: 5.w,
-                    ),
-                    shrinkWrap: true,
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (_, index) {
-                      MedicalTest package = SampleData().packages[index];
-                      final bool inCart = model.cart.contains(package);
-
-                      return PackageCard(
-                        package: package,
-                        cartListenable: model.cartListenable,
-                        onCardTap: () => model.openDetails(
-                          package,
-                          isPackage: true,
-                          inCart: inCart,
-                        ),
-                        ctaAction: () => model.addToCart(package),
-                      );
-                    },
-                    separatorBuilder: (_, __) {
-                      return Gap(5.w);
-                    },
-                    itemCount: SampleData().packages.length,
+                UnboundedListView.separated(
+                  physics: const BouncingScrollPhysics(),
+                  padding: EdgeInsets.symmetric(
+                    vertical: 2.h,
+                    horizontal: 5.w,
                   ),
+                  shrinkWrap: true,
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (_, index) {
+                    MedicalTest package = SampleData().packages[index];
+                    final bool inCart = model.cart.contains(package);
+
+                    return PackageCard(
+                      package: package,
+                      cartListenable: model.cartListenable,
+                      onCardTap: () => model.openDetails(
+                        package,
+                        isPackage: true,
+                        inCart: inCart,
+                      ),
+                      ctaAction: () => model.addToCart(package),
+                    );
+                  },
+                  separatorBuilder: (_, __) {
+                    return Gap(5.w);
+                  },
+                  itemCount: SampleData().packages.length,
                 ),
               ],
             ),
