@@ -1,6 +1,22 @@
 import 'package:healthcheck/models/medical_test.dart';
 
 class SampleData {
+  List<String> testCategories = [
+    'Popular Tests',
+    'Fever',
+    'Covid 19',
+    'Allergy Profiles',
+    'Fitness'
+  ];
+
+  List<String> packageCategories = [
+    'All Packages',
+    'Elderly',
+    'Heart',
+    'Women Health',
+    'Men'
+  ];
+
   List<MedicalTest> labTest = [
     const MedicalTest(
       name: 'Complete Blood Count (CBC)',
@@ -9,6 +25,25 @@ class SampleData {
       price: 499,
       discountedPrice: 399,
       tests: ['White blood cell count', 'Platelet count', 'Hemoglobin level'],
+    ),
+    const MedicalTest(
+      name: "Basic Metabolic Panel (BMP)",
+      description:
+          "A BMP is a blood test that measures the levels of several chemicals in your blood, including glucose, electrolytes, and liver and kidney function tests.",
+      price: 299,
+      discountedPrice: 249,
+      tests: [
+        "Glucose",
+        "Sodium",
+        "Potassium",
+        "Chloride",
+        "Carbon dioxide",
+        "Blood urea nitrogen (BUN)",
+        "Creatinine",
+        "Calcium",
+        "Magnesium",
+        "Phosphorus"
+      ],
     ),
     const MedicalTest(
       name: 'Lipid Profile',
@@ -35,6 +70,19 @@ class SampleData {
         'Free T3 (FT3)',
         'Triiodothyronine (T3)',
         'Thyroxine (T4)'
+      ],
+    ),
+    const MedicalTest(
+      name: "Iron Studies",
+      description:
+          "Iron studies are a group of blood tests that measure the levels of iron in your blood.",
+      price: 129,
+      discountedPrice: 99,
+      tests: [
+        "Serum iron",
+        "Total iron binding capacity (TIBC)",
+        "Transferrin saturation",
+        "Ferritin"
       ],
     ),
     const MedicalTest(

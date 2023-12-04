@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:healthcheck/constants/app_extensions.dart';
@@ -7,9 +8,17 @@ class StadiumBorderButton extends StatelessWidget {
   final IconData? icon;
   final String label;
   final VoidCallback? onTap;
+  final EdgeInsets? padding;
+  final double? iconPadding;
 
-  const StadiumBorderButton(
-      {super.key, this.icon, required this.label, this.onTap});
+  const StadiumBorderButton({
+    super.key,
+    this.icon,
+    required this.label,
+    this.onTap,
+    this.padding,
+    this.iconPadding,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -19,10 +28,11 @@ class StadiumBorderButton extends StatelessWidget {
       onTap: onTap,
       borderRadius: BorderRadius.circular(50.w),
       child: Ink(
-        padding: EdgeInsets.symmetric(
-          horizontal: 3.2.w,
-          vertical: 0.6.h,
-        ),
+        padding: padding ??
+            EdgeInsets.symmetric(
+              horizontal: 3.2.w,
+              vertical: 0.6.h,
+            ),
         decoration: ShapeDecoration(
           shape: StadiumBorder(
             side: BorderSide(
@@ -38,7 +48,8 @@ class StadiumBorderButton extends StatelessWidget {
             Visibility(
               visible: icon != null,
               child: Padding(
-                padding: EdgeInsets.only(right: 3.5.w),
+                padding:
+                    EdgeInsets.only(right: kIsWeb ? iconPadding ?? 0 : 3.5.w),
                 child: Icon(
                   icon,
                   color: primary,

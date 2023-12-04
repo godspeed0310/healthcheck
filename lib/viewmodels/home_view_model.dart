@@ -19,6 +19,8 @@ class HomeViewModel extends BaseViewModel {
   List<MedicalTest> get cart => cartListenable.value.values.toList();
   final ThemeService _themeService = locator<ThemeService>();
   final RouterService _routerService = locator<RouterService>();
+  int labIndex = 0;
+  int packageIndex = 0;
 
   switchThemes() {
     if (_themeService.isDarkMode) {
@@ -26,6 +28,16 @@ class HomeViewModel extends BaseViewModel {
     } else {
       _themeService.setThemeMode(ThemeManagerMode.dark);
     }
+  }
+
+  setLabIndex(int index) {
+    labIndex = index;
+    notifyListeners();
+  }
+
+  setPackageIndex(int index) {
+    packageIndex = index;
+    notifyListeners();
   }
 
   void openDetails(

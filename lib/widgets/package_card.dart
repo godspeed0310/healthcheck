@@ -26,13 +26,15 @@ class PackageCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool kIsMobile = MediaQuery.of(context).size.width < 600;
+
     return CustomOpenContainer(
       closedBuilder: (_, __) {
         return Container(
-          width: 75.w,
-          padding: EdgeInsets.all(5.w),
+          width: !kIsMobile ? 371 : 75.w,
+          padding: EdgeInsets.all(!kIsMobile ? 32 : 5.w),
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(1.3.w),
+            borderRadius: BorderRadius.circular(!kIsMobile ? 8 : 1.3.w),
             border: Border.all(
               color: context.onSurface.withOpacity(0.5),
             ),
@@ -42,19 +44,21 @@ class PackageCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               CircleAvatar(
-                radius: 8.w,
+                radius: !kIsMobile ? 40 : 8.w,
                 backgroundColor: kcAltPrimary.withOpacity(0.1),
                 child: Icon(
                   Icons.medication,
-                  size: 8.w,
+                  size: !kIsMobile ? 40 : 8.w,
                   color: context.primaryColor,
                 ),
               ),
-              Gap(2.2.h),
+              Gap(!kIsMobile ? 24 : 2.2.h),
               Text(
                 package.name,
+                maxLines: !kIsMobile ? 1 : 2,
+                overflow: TextOverflow.ellipsis,
                 style: GoogleFonts.inter(
-                  fontSize: 13.5.sp,
+                  fontSize: !kIsMobile ? 24 : 13.5.sp,
                   fontWeight: FontWeight.w500,
                 ),
               ),
@@ -62,7 +66,7 @@ class PackageCard extends StatelessWidget {
               Text(
                 'Includes ${package.tests.length} tests',
                 style: TextStyle(
-                  fontSize: 7.8.sp,
+                  fontSize: !kIsMobile ? 14 : 7.8.sp,
                   color: context.onSurface.withOpacity(0.5),
                 ),
               ),
@@ -72,21 +76,21 @@ class PackageCard extends StatelessWidget {
                   return Text(
                     ' • ${package.tests[index]}',
                     style: TextStyle(
-                      fontSize: 7.8.sp,
+                      fontSize: !kIsMobile ? 14 : 7.8.sp,
                       color: context.onSurface.withOpacity(0.5),
                     ),
                   );
                 },
               ),
               Text(
-                'View more',
+                'View more ${(kIsMobile)}',
                 style: TextStyle(
-                  fontSize: 7.8.sp,
+                  fontSize: !kIsMobile ? 14 : 7.8.sp,
                   color: context.onSurface.withOpacity(0.5),
                   decoration: TextDecoration.underline,
                 ),
               ),
-              Gap(3.h),
+              !kIsMobile ? const Gap(10) : Gap(3.h),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -99,9 +103,9 @@ class PackageCard extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text(
-                              '₹${package.price}',
+                              '₹${package.price}/-',
                               style: TextStyle(
-                                fontSize: 7.sp,
+                                fontSize: !kIsMobile ? 12 : 7.sp,
                                 color: kcSecondary,
                                 decoration: TextDecoration.lineThrough,
                                 decorationColor: kcSecondary,
@@ -113,7 +117,7 @@ class PackageCard extends StatelessWidget {
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: kcSecondary,
-                                fontSize: 13.5.sp,
+                                fontSize: !kIsMobile ? 24 : 13.5.sp,
                               ),
                             ),
                           ],
@@ -123,7 +127,7 @@ class PackageCard extends StatelessWidget {
                           '₹${package.price}',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            fontSize: 13.5.sp,
+                            fontSize: !kIsMobile ? 24 : 13.5.sp,
                             color: kcSecondary,
                           ),
                         );
@@ -139,7 +143,15 @@ class PackageCard extends StatelessWidget {
                         onPressed: ctaAction,
                         color: inCart ? kcSecondary : context.primaryColor,
                         label: inCart ? 'In cart' : 'Add to Cart',
-                        size: Size(30.w, 4.h),
+                        labelStyle: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: inCart ? kcSecondary : context.primaryColor,
+                          fontSize: !kIsMobile ? 16 : 6.75.sp,
+                        ),
+                        borderRadius:
+                            BorderRadius.circular(!kIsMobile ? 4 : 1.3.w),
+                        size: Size(
+                            !kIsMobile ? 152 : 30.w, !kIsMobile ? 44 : 4.h),
                         type: CTAButtonType.outlined,
                       );
                     },

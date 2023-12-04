@@ -1,5 +1,4 @@
-import 'dart:io';
-
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:healthcheck/app/app.locator.dart';
@@ -16,9 +15,12 @@ void main() async {
   await setupLocator(stackedRouter: stackedRouter);
   await locator<HiveService>().init();
   await locator<NotificationService>().initialize();
-  if (Platform.isAndroid || Platform.isIOS) {
-    await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  if (kIsWeb) {
+    await SystemChrome.setPreferredOrientations([
+      DeviceOrientation.landscapeLeft,
+    ]);
   }
+  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
   await ThemeManager.initialise();
   runApp(const HealthCheckApp());

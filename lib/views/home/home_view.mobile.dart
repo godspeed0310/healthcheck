@@ -15,8 +15,8 @@ import 'package:healthcheck/widgets/unbounded_list_view.dart';
 import 'package:sizer/sizer.dart';
 import 'package:stacked/stacked.dart';
 
-class HomeView extends StatelessWidget {
-  const HomeView({super.key});
+class HomeViewMobile extends StatelessWidget {
+  const HomeViewMobile({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -94,7 +94,7 @@ class HomeView extends StatelessWidget {
                 ),
                 Gap(4.h),
                 GridView.builder(
-                  itemCount: SampleData().labTest.length,
+                  itemCount: 4,
                   padding: EdgeInsets.symmetric(horizontal: 5.w),
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),

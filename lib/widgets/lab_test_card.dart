@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -23,9 +25,11 @@ class LabTestCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool kIsMobile = MediaQuery.of(context).size.width < 600;
+
     return Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(1.3.w),
+        borderRadius: BorderRadius.circular(!kIsMobile ? 10 : 1.3.w),
         border: Border.all(
           color: context.onSurface.withOpacity(0.5),
         ),
@@ -35,20 +39,22 @@ class LabTestCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            height: 5.h,
+            height: !kIsMobile ? 64 : 5.h,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(1.3.w),
-                topRight: Radius.circular(1.3.w),
+                topLeft: Radius.circular(!kIsMobile ? 10 : 1.3.w),
+                topRight: Radius.circular(!kIsMobile ? 10 : 1.3.w),
               ),
               color: context.primaryColor.withOpacity(0.8),
             ),
             child: Center(
               child: Text(
                 medicalTest.name,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: 7.5.sp,
+                  fontSize: !kIsMobile ? 20 : 7.sp,
                   color: kcWhite,
                 ),
               ),
@@ -56,23 +62,48 @@ class LabTestCard extends StatelessWidget {
           ),
           Expanded(
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 3.2.w),
+              padding:
+                  EdgeInsets.symmetric(horizontal: !kIsMobile ? 29 : 3.2.w),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Gap(2.1.h),
+                  Gap(!kIsMobile ? 14 : 2.1.h),
                   Text(
                     'Includes ${medicalTest.tests.length} tests',
                     style: TextStyle(
-                      fontSize: 10.sp,
+                      fontSize: !kIsMobile ? 14 : 10.sp,
                     ),
                   ),
-                  Gap(1.7.h),
+                  Gap(!kIsMobile ? 5 : 1.7.h),
+                  Builder(
+                    builder: (_) {
+                      if (!kIsMobile) {
+                        return Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: List.generate(
+                            math.min(medicalTest.tests.length, 3),
+                            (index) {
+                              return Text(
+                                ' • ${medicalTest.tests[index]}',
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                ),
+                              );
+                            },
+                          ),
+                        );
+                      } else {
+                        return const Gap(0);
+                      }
+                    },
+                  ),
+                  Gap(!kIsMobile ? 27 : 0),
                   Text(
                     'Get reports in 24 hours',
                     style: TextStyle(
-                      fontSize: 7.sp,
+                      fontSize: !kIsMobile ? 14 : 7.sp,
                     ),
                   ),
                   Builder(
@@ -85,7 +116,7 @@ class LabTestCard extends StatelessWidget {
                             Text(
                               '₹${medicalTest.price}',
                               style: TextStyle(
-                                fontSize: 7.sp,
+                                fontSize: !kIsMobile ? 13 : 7.sp,
                                 color: context.primaryColor,
                                 decoration: TextDecoration.lineThrough,
                                 decorationColor: context.primaryColor,
@@ -96,6 +127,7 @@ class LabTestCard extends StatelessWidget {
                               '₹${medicalTest.discountedPrice}',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
+                                fontSize: !kIsMobile ? 20 : 7.5.sp,
                                 color: context.primaryColor,
                               ),
                             ),
@@ -106,6 +138,7 @@ class LabTestCard extends StatelessWidget {
                           '₹${medicalTest.price}',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
+                            fontSize: !kIsMobile ? 20 : 7.5.sp,
                             color: context.primaryColor,
                           ),
                         );
@@ -121,6 +154,18 @@ class LabTestCard extends StatelessWidget {
                       return CTAButton(
                         label: inCart ? 'In cart' : 'Add to Cart',
                         onPressed: ctaAction,
+                        borderRadius: BorderRadius.circular(
+                          !kIsMobile ? 10 : 1.3.w,
+                        ),
+                        size: Size(
+                          !kIsMobile ? 310 : 40.w,
+                          !kIsMobile ? 52 : 4.5.h,
+                        ),
+                        labelStyle: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: !kIsMobile ? 16 : 7.sp,
+                          color: kcWhite,
+                        ),
                         color: inCart ? kcSecondary : context.primaryColor,
                       );
                     },
@@ -128,7 +173,19 @@ class LabTestCard extends StatelessWidget {
                   Gap(1.h),
                   CTAButton(
                     onPressed: openDetails,
+                    borderRadius: BorderRadius.circular(
+                      !kIsMobile ? 10 : 1.3.w,
+                    ),
                     label: 'View Details',
+                    labelStyle: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: !kIsMobile ? 16 : 7.sp,
+                      color: context.primaryColor,
+                    ),
+                    size: Size(
+                      !kIsMobile ? 310 : 40.w,
+                      !kIsMobile ? 52 : 4.5.h,
+                    ),
                     type: CTAButtonType.outlined,
                   ),
                   Gap(1.1.h),
@@ -136,6 +193,7 @@ class LabTestCard extends StatelessWidget {
               ),
             ),
           ),
+          Gap(!kIsMobile ? 20 : 0),
         ],
       ),
     );

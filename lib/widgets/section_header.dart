@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:healthcheck/constants/app_extensions.dart';
-import 'package:healthcheck/constants/shared_constants.dart';
 import 'package:sizer/sizer.dart';
 
 class SectionHeader extends StatelessWidget {
@@ -9,6 +8,7 @@ class SectionHeader extends StatelessWidget {
   final String? action;
   final IconData? icon;
   final EdgeInsetsGeometry? padding;
+  final TextStyle? titleStyle;
 
   const SectionHeader({
     super.key,
@@ -16,6 +16,7 @@ class SectionHeader extends StatelessWidget {
     this.action,
     this.icon = Icons.arrow_forward,
     this.padding,
+    this.titleStyle,
   });
 
   @override
@@ -28,7 +29,12 @@ class SectionHeader extends StatelessWidget {
         children: [
           Text(
             title,
-            style: ktsHeader.copyWith(color: context.primaryColor),
+            style: titleStyle ??
+                TextStyle(
+                  fontSize: 15.sp,
+                  fontWeight: FontWeight.w500,
+                  color: context.primaryColor,
+                ),
           ),
           Visibility(
             visible: action != null,

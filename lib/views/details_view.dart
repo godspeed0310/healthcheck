@@ -52,7 +52,11 @@ class DetailsView extends StatelessWidget {
             ),
             Text(
               test.name,
-              style: ktsHeader.copyWith(color: context.primaryColor),
+              style: TextStyle(
+                fontSize: 15.sp,
+                fontWeight: FontWeight.w500,
+                color: context.primaryColor,
+              ),
             ),
             Gap(1.h),
             Builder(
@@ -66,17 +70,18 @@ class DetailsView extends StatelessWidget {
                         padding: EdgeInsets.only(right: 3.w),
                         child: Text(
                           '₹${test.price}',
-                          style: ktsHeader.copyWith(
+                          style: TextStyle(
                             fontSize: 10.sp,
                             color: context.primaryColor,
+                            fontWeight: FontWeight.w500,
                             decoration: TextDecoration.lineThrough,
                             decorationColor: context.primaryColor,
                           ),
                         ),
                       ),
                       Text(
-                        '₹${test.discountedPrice}',
-                        style: ktsHeader.copyWith(
+                        '₹${test.discountedPrice}', // )
+                        style: TextStyle(
                           fontSize: 15.sp,
                           color: context.primaryColor,
                           fontWeight: FontWeight.bold,
@@ -87,7 +92,7 @@ class DetailsView extends StatelessWidget {
                 } else {
                   return Text(
                     '₹${test.price}',
-                    style: ktsHeader.copyWith(
+                    style: TextStyle(
                       fontSize: 15.sp,
                       color: context.primaryColor,
                       fontWeight: FontWeight.bold,
