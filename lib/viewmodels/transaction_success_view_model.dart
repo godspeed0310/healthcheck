@@ -22,11 +22,9 @@ class TransactionSuccessViewModel extends BaseViewModel {
         title: 'Thanks for purchasing ${appointment.tests.length} tests',
       );
     }
-    _hiveService.createAppointment(appointment);
   }
 
   back() async {
-    await _hiveService.clearCart();
     _routerService.clearStackAndShow(
       const PageRouteInfo(HomeViewRoute.name, path: '/'),
     );

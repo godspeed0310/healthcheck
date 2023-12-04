@@ -11,6 +11,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
+import 'package:uuid/uuid.dart';
 
 class CartViewModel extends BaseViewModel {
   DateTime? _selectedDateTime;
@@ -84,10 +85,12 @@ class CartViewModel extends BaseViewModel {
 
   void completeTransaction() async {
     Appointment appointment = Appointment(
-      id: '1',
+      id: const Uuid().v4(),
       tests: tests,
       scheduledDate: _selectedDateTime!,
     );
+    await _hiveService.clearCart();
+    _hiveService.createAppointment(appointment);
 
     await _routerService.replaceWithTransactionSuccessView(
       appointment: appointment,

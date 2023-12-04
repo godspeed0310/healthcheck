@@ -49,15 +49,6 @@ class HealthCheckApp extends StatelessWidget {
                 );
               },
             );
-            // return MaterialApp(
-            //   debugShowCheckedModeBanner: false,
-            //   title: 'Health Check',
-            //   theme: lightTheme,
-            //   darkTheme: darkTheme,
-            //   themeMode: themeMode,
-            //   navigatorKey: StackedService.navigatorKey,
-            //   onGenerateRoute: StackedRouter().onGenerateRoute,
-            // );
           },
         );
       },
