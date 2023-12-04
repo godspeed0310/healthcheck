@@ -34,19 +34,37 @@ class HomeViewDesktop extends StatelessWidget {
                         horizontal: 150,
                         vertical: 40,
                       ),
-                      child: const Row(
+                      child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Text(
+                          const Text(
                             'Health Check',
                             style: TextStyle(
                               fontSize: 32,
                               fontWeight: FontWeight.w600,
                             ),
                           ),
-                          Spacer(),
-                          StadiumBorderButton(
+                          const Spacer(),
+                          IconButton(
+                            onPressed: () => model.switchThemes(),
+                            icon: Icon(
+                              context.isDarkEnabled
+                                  ? Icons.light_mode
+                                  : Icons.dark_mode,
+                              color: context.primaryColor,
+                            ),
+                          ),
+                          const Gap(15),
+                          IconButton(
+                            onPressed: () => model.openUserHistory(),
+                            icon: Icon(
+                              Icons.history,
+                              color: context.primaryColor,
+                            ),
+                          ),
+                          const Gap(15),
+                          const StadiumBorderButton(
                             label: 'Cart',
                             icon: Icons.shopping_cart,
                             padding: EdgeInsets.symmetric(
