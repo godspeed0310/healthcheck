@@ -29,7 +29,6 @@ class PackageCard extends StatelessWidget {
     return CustomOpenContainer(
       closedBuilder: (_, __) {
         return Container(
-          height: 33.h,
           width: 75.w,
           padding: EdgeInsets.all(5.w),
           decoration: BoxDecoration(
@@ -87,7 +86,7 @@ class PackageCard extends StatelessWidget {
                   decoration: TextDecoration.underline,
                 ),
               ),
-              const Spacer(),
+              Gap(3.h),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -131,14 +130,6 @@ class PackageCard extends StatelessWidget {
                       }
                     },
                   ),
-                  // Text(
-                  //   '₹${package.price}/-',
-                  //   style: TextStyle(
-                  //     fontWeight: FontWeight.bold,
-                  //     fontSize: 13.5.sp,
-                  //     color: kcSecondary,
-                  //   ),
-                  // ),
                   ValueListenableBuilder(
                     valueListenable: cartListenable,
                     builder: (_, value, __) {
