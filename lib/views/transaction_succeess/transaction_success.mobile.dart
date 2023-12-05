@@ -11,10 +11,10 @@ import 'package:intl/intl.dart';
 import 'package:sizer/sizer.dart';
 import 'package:stacked/stacked.dart';
 
-class TransactionSuccessView extends StatelessWidget {
+class TransactionSuccessViewMobile extends StatelessWidget {
   final Appointment appointment;
 
-  const TransactionSuccessView({
+  const TransactionSuccessViewMobile({
     super.key,
     required this.appointment,
   });

@@ -4,7 +4,7 @@ import 'package:healthcheck/services/picker_service.dart';
 import 'package:healthcheck/views/appointment_history/appointment_history_view.dart';
 import 'package:healthcheck/views/details/details_view.dart';
 import 'package:healthcheck/views/home/home_view.dart';
-import 'package:healthcheck/views/transaction_success.dart';
+import 'package:healthcheck/views/transaction_succeess/transaction_success.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:stacked_themes/stacked_themes.dart';
