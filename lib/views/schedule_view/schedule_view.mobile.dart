@@ -9,10 +9,10 @@ import 'package:healthcheck/widgets/section_header.dart';
 import 'package:sizer/sizer.dart';
 import 'package:stacked/stacked.dart';
 
-class ScheduleView extends StatelessWidget {
+class ScheduleViewMobile extends StatelessWidget {
   final DateTime? previousDate;
 
-  const ScheduleView({super.key, this.previousDate});
+  const ScheduleViewMobile({super.key, this.previousDate});
 
   @override
   Widget build(BuildContext context) {

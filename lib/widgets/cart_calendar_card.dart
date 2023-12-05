@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:healthcheck/constants/app_extensions.dart';
-import 'package:healthcheck/views/schedule_view.dart';
+import 'package:healthcheck/views/schedule_view/schedule_view.dart';
 import 'package:healthcheck/widgets/custom_open_container.dart';
 import 'package:sizer/sizer.dart';
 

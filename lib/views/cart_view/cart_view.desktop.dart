@@ -107,6 +107,9 @@ class CartViewDesktop extends StatelessWidget {
                         children: [
                           CartCalendarCard(
                             dateController: model.dateController,
+                            onClosed: (dynamic dateTime) =>
+                                model.updateDate(dateTime, context),
+                            previousDate: model.selectedDateTime,
                           ),
                           Gap(!kIsMobile ? 20 : 2.h),
                           CartPricingCard(
