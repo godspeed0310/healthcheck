@@ -14,8 +14,8 @@ import 'package:healthcheck/widgets/empty_cart_card.dart';
 import 'package:sizer/sizer.dart';
 import 'package:stacked/stacked.dart';
 
-class CartView extends StatelessWidget {
-  const CartView({super.key});
+class CartViewMobile extends StatelessWidget {
+  const CartViewMobile({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -44,8 +44,10 @@ class CartView extends StatelessWidget {
                 } else {
                   return ListView(
                     physics: const BouncingScrollPhysics(),
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 5.w, vertical: 2.h),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 5.w,
+                      vertical: 2.h,
+                    ),
                     children: [
                       ListView.separated(
                         physics: const NeverScrollableScrollPhysics(),

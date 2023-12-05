@@ -7,22 +7,28 @@ class CartPricingCard extends StatelessWidget {
   final int price;
   final int discountedPrice;
 
-  const CartPricingCard(
-      {super.key, required this.price, required this.discountedPrice});
+  const CartPricingCard({
+    super.key,
+    required this.price,
+    required this.discountedPrice,
+  });
 
   @override
   Widget build(BuildContext context) {
+    final bool kIsMobile = MediaQuery.of(context).size.width < 600;
+
     return Container(
-      height: 21.h,
+      width: !kIsMobile ? 450 : 90.w,
+      height: !kIsMobile ? 229 : 21.h,
       padding: EdgeInsets.symmetric(
-        horizontal: 5.w,
-        vertical: 2.h,
+        horizontal: !kIsMobile ? 42 : 5.w,
+        vertical: !kIsMobile ? 26 : 2.h,
       ),
       decoration: BoxDecoration(
         border: Border.all(
           color: context.onSurface.withOpacity(0.5),
         ),
-        borderRadius: BorderRadius.circular(2.1.w),
+        borderRadius: BorderRadius.circular(!kIsMobile ? 8 : 2.1.w),
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -41,12 +47,12 @@ class CartPricingCard extends StatelessWidget {
             amount: price - discountedPrice,
             titleStyle: TextStyle(
               fontWeight: FontWeight.bold,
-              fontSize: 11.25.sp,
+              fontSize: !kIsMobile ? 20 : 11.25.sp,
               color: context.primaryColor,
             ),
             amountStyle: TextStyle(
               fontWeight: FontWeight.bold,
-              fontSize: 11.25.sp,
+              fontSize: !kIsMobile ? 20 : 11.25.sp,
               color: context.primaryColor,
             ),
           ),
@@ -56,7 +62,7 @@ class CartPricingCard extends StatelessWidget {
             amount: discountedPrice,
             amountStyle: TextStyle(
               fontWeight: FontWeight.bold,
-              fontSize: 11.25.sp,
+              fontSize: !kIsMobile ? 20 : 11.25.sp,
               color: context.primaryColor,
             ),
           ),

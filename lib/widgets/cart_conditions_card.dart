@@ -15,13 +15,16 @@ class CartConditionsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool kIsMobile = MediaQuery.of(context).size.width < 600;
+
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 1.h),
+      padding: EdgeInsets.all(!kIsMobile ? 16 : 2.9.w),
+      width: !kIsMobile ? 450 : 90.w,
       decoration: BoxDecoration(
         border: Border.all(
           color: context.onSurface.withOpacity(0.5),
         ),
-        borderRadius: BorderRadius.circular(2.1.w),
+        borderRadius: BorderRadius.circular(!kIsMobile ? 5 : 2.1.w),
       ),
       child: CheckboxListTile(
         value: isChecked,
@@ -29,7 +32,7 @@ class CartConditionsCard extends StatelessWidget {
         title: Text(
           'Hard copy of reports',
           style: GoogleFonts.inter(
-            fontSize: 9.sp,
+            fontSize: !kIsMobile ? 14 : 9.sp,
             color: context.onSurface.withOpacity(0.8),
             fontWeight: FontWeight.w500,
           ),
@@ -37,7 +40,7 @@ class CartConditionsCard extends StatelessWidget {
         subtitle: Text(
           'Reports will be delivered within 3-4 working days. Hard copy charges are non-refundable once the reports have been dispatched.\n\n₹150 per person',
           style: TextStyle(
-            fontSize: 9.sp,
+            fontSize: !kIsMobile ? 14 : 9.sp,
             color: context.onSurface.withOpacity(0.5),
           ),
         ),

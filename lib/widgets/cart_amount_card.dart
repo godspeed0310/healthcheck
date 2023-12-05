@@ -21,6 +21,7 @@ class CartAmountCard extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Text(title, style: titleStyle),
+        const Spacer(),
         Text('₹$amount', style: amountStyle),
       ],
     );

@@ -21,84 +21,119 @@ class CartOrderCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool kIsMobile = MediaQuery.of(context).size.width < 600;
+
     return Container(
-      height: 26.h,
+      width: !kIsMobile ? 686 : 90.w,
+      padding: EdgeInsets.only(
+        bottom: !kIsMobile ? 40 : 1.3.h,
+        top: 0,
+      ),
       decoration: BoxDecoration(
         border: Border.all(
           color: context.onSurface.withOpacity(0.5),
         ),
-        borderRadius: BorderRadius.circular(2.1.w),
+        borderRadius: BorderRadius.circular(!kIsMobile ? 10 : 2.1.w),
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            height: 5.5.h,
+            padding: EdgeInsets.only(
+              left: !kIsMobile ? 40 : 0,
+            ),
+            height: !kIsMobile ? 64 : 5.5.h,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(2.1.w),
-                topRight: Radius.circular(2.1.w),
+                topLeft: Radius.circular(!kIsMobile ? 10 : 2.1.w),
+                topRight: Radius.circular(!kIsMobile ? 10 : 2.1.w),
               ),
               color: context.primaryColor.withOpacity(0.8),
             ),
-            child: Center(
+            child: Align(
+              alignment: !kIsMobile ? Alignment.centerLeft : Alignment.center,
               child: Text(
                 'Pathology Tests',
                 style: TextStyle(
-                  fontSize: 10.5.sp,
+                  fontSize: !kIsMobile ? 20 : 10.5.sp,
                   fontWeight: FontWeight.bold,
                   color: kcWhite,
                 ),
               ),
             ),
           ),
-          Expanded(
-            child: Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: 5.w,
-                vertical: 2.h,
-              ),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text(
-                        test.name,
-                        style: GoogleFonts.inter(
-                          fontWeight: FontWeight.w600,
-                          fontSize: 11.25.sp,
-                        ),
+          Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: !kIsMobile ? 32 : 5.w,
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Gap(20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      test.name,
+                      style: GoogleFonts.inter(
+                        fontWeight:
+                            !kIsMobile ? FontWeight.normal : FontWeight.w600,
+                        fontSize: !kIsMobile ? 20 : 11.25.sp,
                       ),
-                      Text(
-                        '₹${test.price}',
-                        style: GoogleFonts.inter(
-                          fontWeight: FontWeight.w600,
-                          fontSize: 12.sp,
-                          color: context.primaryColor,
-                        ),
+                    ),
+                    Text(
+                      '₹${test.price}',
+                      style: GoogleFonts.inter(
+                        fontWeight: FontWeight.w600,
+                        fontSize: !kIsMobile ? 24 : 12.sp,
+                        color: context.primaryColor,
                       ),
-                    ],
-                  ),
-                  const Spacer(),
-                  StadiumBorderButton(
-                    label: 'Remove',
-                    icon: Icons.delete_outline,
-                    onTap: onRemove,
-                  ),
-                  Gap(1.1.h),
-                  StadiumBorderButton(
-                    label: 'Upload Prescription (Optional)',
-                    icon: Icons.upload_outlined,
-                    onTap: onUpload,
-                  ),
-                ],
-              ),
+                    ),
+                  ],
+                ),
+                Gap(5.h),
+                Builder(
+                  builder: (_) {
+                    if (!kIsMobile) {
+                      return Row(
+                        children: [
+                          StadiumBorderButton(
+                            label: 'Remove',
+                            icon: Icons.delete_outline,
+                            onTap: onRemove,
+                          ),
+                          Gap(1.1.h),
+                          StadiumBorderButton(
+                            label: 'Upload Prescription (Optional)',
+                            icon: Icons.upload_outlined,
+                            onTap: onUpload,
+                          ),
+                        ],
+                      );
+                    } else {
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          StadiumBorderButton(
+                            label: 'Remove',
+                            icon: Icons.delete_outline,
+                            onTap: onRemove,
+                          ),
+                          Gap(1.1.h),
+                          StadiumBorderButton(
+                            label: 'Upload Prescription (Optional)',
+                            icon: Icons.upload_outlined,
+                            onTap: onUpload,
+                          ),
+                        ],
+                      );
+                    }
+                  },
+                ),
+              ],
             ),
           ),
         ],

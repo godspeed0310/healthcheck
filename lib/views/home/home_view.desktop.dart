@@ -7,7 +7,7 @@ import 'package:healthcheck/constants/shared_constants.dart';
 import 'package:healthcheck/data/sample_data.dart';
 import 'package:healthcheck/models/medical_test.dart';
 import 'package:healthcheck/viewmodels/home_view_model.dart';
-import 'package:healthcheck/views/cart_view.dart';
+import 'package:healthcheck/views/cart_view/cart_view.dart';
 import 'package:healthcheck/widgets/custom_open_container.dart';
 import 'package:healthcheck/widgets/default_system_overlay.dart';
 import 'package:healthcheck/widgets/lab_test_card.dart';
@@ -72,7 +72,7 @@ class HomeViewDesktop extends StatelessWidget {
                               return ValueListenableBuilder(
                                 valueListenable: model.cartListenable,
                                 builder: (_, value, __) {
-                                  final int cartCount = value.length;
+                                  final int cartCount = value.values.length;
 
                                   if (cartCount == 0) {
                                     return const StadiumBorderButton(

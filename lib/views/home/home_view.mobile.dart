@@ -5,7 +5,7 @@ import 'package:healthcheck/constants/app_extensions.dart';
 import 'package:healthcheck/data/sample_data.dart';
 import 'package:healthcheck/models/medical_test.dart';
 import 'package:healthcheck/viewmodels/home_view_model.dart';
-import 'package:healthcheck/views/cart_view.dart';
+import 'package:healthcheck/views/cart_view/cart_view.dart';
 import 'package:healthcheck/widgets/custom_open_container.dart';
 import 'package:healthcheck/widgets/default_system_overlay.dart';
 import 'package:healthcheck/widgets/lab_test_card.dart';
