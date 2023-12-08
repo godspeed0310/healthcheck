@@ -16,6 +16,7 @@ class ScheduleViewDesktop extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<ScheduleViewModel>.reactive(
       viewModelBuilder: () => ScheduleViewModel(),
+      onViewModelReady: (model) => model.initializeModel(previousDate),
       builder: (_, model, __) {
         return DefaultSystemOverlay(
           child: Scaffold(
