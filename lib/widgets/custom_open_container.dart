@@ -21,6 +21,7 @@ class CustomOpenContainer extends StatelessWidget {
       openColor: Colors.transparent,
       middleColor: Colors.transparent,
       openElevation: 0,
+      transitionType: ContainerTransitionType.fadeThrough,
       closedElevation: 0,
       closedBuilder: closedBuilder,
       openBuilder: openBuilder,

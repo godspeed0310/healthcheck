@@ -98,9 +98,15 @@ class HomeViewDesktop extends StatelessWidget {
                                       action: bd.Badge(
                                         badgeStyle: const bd.BadgeStyle(
                                           shape: bd.BadgeShape.circle,
+                                          badgeColor: kcSecondary,
                                           padding: EdgeInsets.all(8),
                                         ),
-                                        badgeContent: Text('$cartCount'),
+                                        badgeContent: Text(
+                                          '$cartCount',
+                                          style: TextStyle(
+                                            color: context.primaryColor,
+                                          ),
+                                        ),
                                         showBadge: cartCount > 0,
                                       ),
                                     );
