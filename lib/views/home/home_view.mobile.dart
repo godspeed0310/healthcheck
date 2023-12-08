@@ -2,6 +2,7 @@ import 'package:badges/badges.dart' as bd;
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:healthcheck/constants/app_extensions.dart';
+import 'package:healthcheck/constants/shared_constants.dart';
 import 'package:healthcheck/data/sample_data.dart';
 import 'package:healthcheck/models/medical_test.dart';
 import 'package:healthcheck/viewmodels/home_view_model.dart';
@@ -56,11 +57,12 @@ class HomeViewMobile extends StatelessWidget {
                         ),
                         badgeStyle: bd.BadgeStyle(
                           padding: EdgeInsets.all(1.w),
+                          badgeColor: kcSecondary,
                         ),
                         badgeContent: Text(
                           value.length.toString(),
                           style: TextStyle(
-                            color: Colors.white,
+                            color: context.primaryColor,
                             fontSize: 8.sp,
                           ),
                         ),
